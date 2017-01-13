@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding= "UTF-8"?>
+<taglib>
+    <tlib-version>1.0</tlib-version>
+    <jsp-version>1.2</jsp-version>
+
+    <short-name>date</short-name>
+
+    <tag>
+        <name>date</name>
+        <!-- 对应的java处理类 -->
+        <tag-class>com.zedata.foodsafety.util.DateTag</tag-class>
+        <body-content>JSP</body-content>
+        <!-- java处理类中的属性，也是标签中的属性 -->
+        <attribute>
+            <name>value</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+			<name>parttern</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+    </tag>
+</taglib>
