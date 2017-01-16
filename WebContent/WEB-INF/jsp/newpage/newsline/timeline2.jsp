@@ -1,20 +1,63 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 	String path = request.getContextPath();
-	String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<base href="<%=basePath%>">
-		<!-- jsp文件头和头部 -->
-	<%@ include file="../../system/admin/top.jsp"%>
+<base href="<%=basePath%>">
+ <title>时间轴</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- basic styles -->
+
+    <link href="<%=basePath%>static/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="<%=basePath%>static/css/font-awesome.min.css" />
+
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="<%=basePath%>static/css/font-awesome-ie7.min.css" />
+    <![endif]-->
+
+    <!-- page specific plugin styles -->
+
+    <!-- fonts -->
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />
+
+    <!-- ace styles -->
+
+    <link rel="stylesheet" href="<%=basePath%>static/css/ace.min.css" />
+    <link rel="stylesheet" href="<%=basePath%>static/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="<%=basePath%>static/css/ace-skins.min.css" />
+
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="<%=basePath%>static/css/ace-ie.min.css" />
+    <![endif]-->
+
+    <!-- inline styles related to this page -->
+
+    <!-- ace settings handler -->
+
+    <script src="<%=basePath%>static/js/ace-extra.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+    <!--[if lt IE 9]>
+    <script src="<%=basePath%>static/js/html5shiv.js"></script>
+    <script src="<%=basePath%>static/js/respond.min.js"></script>
+    <![endif]-->
 </head>
+
 <body>
-	<div class="main-container" id="main-container">
+
+
+<div class="main-container" id="main-container">
     <script type="text/javascript">
         try{ace.settings.check('main-container' , 'fixed')}catch(e){}
     </script>
@@ -40,16 +83,17 @@
                                         <div class="timeline-items">
                                             <div class="timeline-item clearfix">
                                                 <div class="timeline-info">
-                                                    <img alt="Susan't Avatar" src="assets/avatars/avatar1.png" />
+                                                    <img alt="Susan't Avatar" src="<%=basePath%>static/avatars/avatar1.png" />
                                                     <span class="label label-info label-sm">16:22</span>
                                                 </div>
 
                                                 <div class="widget-box transparent">
                                                     <!--新闻标题-->
                                                     <div class="widget-header widget-header-small">
-															<h5 class="smaller">
+                                                        <h5 class="smaller">
                                                             <a href="#" class="blue">新闻标题</a>
                                                             <span class="grey">总局通告7批次食品不合格</span>
+                                                            <br />
                                                             &nbsp;
                                                             <a href="#" class="blue">来源</a>
                                                             <span class="grey">国家食药局</span>
@@ -116,7 +160,7 @@
                                         <div class="timeline-items">
                                             <div class="timeline-item clearfix">
                                                 <div class="timeline-info">
-                                                    <img alt="Susan't Avatar" src="assets/avatars/avatar1.png" />
+                                                    <img alt="Susan't Avatar" src="<%=basePath%>static/avatars/avatar1.png" />
                                                     <span class="label label-info label-sm">16:22</span>
                                                 </div>
 
@@ -243,19 +287,48 @@
         <i class="icon-double-angle-up icon-only bigger-110"></i>
     </a>
 </div><!-- /.main-container -->
-<!-- 引入 -->
-		<script type="text/javascript">window.jQuery || document.write("<script src='static/js/jquery-1.9.1.min.js'>\x3C/script>");</script>
-		<script src="static/js/bootstrap.min.js"></script>
-		<script src="static/js/ace-elements.min.js"></script>
-		<script src="static/js/ace.min.js"></script>
-		
-		<script type="text/javascript" src="static/js/chosen.jquery.min.js"></script><!-- 下拉框 -->
-		<script type="text/javascript" src="static/js/bootstrap-datepicker.min.js"></script><!-- 日期框 -->
-		<script type="text/javascript" src="static/js/bootbox.min.js"></script><!-- 确认窗口 -->
-		<!-- 引入 -->
-		
-		
-		<script type="text/javascript" src="static/js/jquery.tips.js"></script><!--提示框-->
+
+<!-- basic scripts -->
+
+<!--[if !IE]> -->
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<![endif]-->
+
+<!--[if !IE]> -->
+
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='<%=basePath%>static/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+</script>
+
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='<%=basePath%>static/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
+
+<script type="text/javascript">
+    if("ontouchend" in document) document.write("<script src='<%=basePath%>static/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+</script>
+<script src="<%=basePath%>static/js/bootstrap.min.js"></script>
+<script src="<%=basePath%>static/js/typeahead-bs2.min.js"></script>
+
+<!-- page specific plugin scripts -->
+
+<!-- ace scripts -->
+
+<script src="<%=basePath%>static/js/ace-elements.min.js"></script>
+<script src="<%=basePath%>static/js/ace.min.js"></script>
+
+<!-- inline scripts related to this page -->
+
 <script type="text/javascript">
     jQuery(function($) {
         $('[data-toggle="buttons"] .btn').on('click', function(e){
@@ -266,5 +339,6 @@
         });
     });
 </script>
+<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
 </body>
 </html>

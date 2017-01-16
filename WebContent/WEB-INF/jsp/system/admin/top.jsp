@@ -27,15 +27,15 @@
     <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
     <![endif]-->
 	
-	<link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+	<link rel="stylesheet" href="static/css/ace-rtl.min.css" />
 	
 	<!--[if lte IE 8]>
-    <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+    <link rel="stylesheet" href="static/css/ace-ie.min.css" />
     <![endif]-->
     
-	<script src="assets/js/ace-extra.min.js"></script>
+	<script src="static/js/ace-extra.min.js"></script>
 	
 	<!--[if lt IE 9]>
-    <script src="assets/js/html5shiv.js"></script>
-    <script src="assets/js/respond.min.js"></script>
+    <script src="static/js/html5shiv.js"></script>
+    <script src="static/js/respond.min.js"></script>
     <![endif]-->

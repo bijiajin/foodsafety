@@ -178,6 +178,7 @@ public class LoginController extends BaseController {
 					user = userr;
 				}
 				Role role = user.getRole();
+				
 				String roleRights = role!=null ? role.getRIGHTS() : "";
 				//避免每次拦截用户操作时查询数据库，以下将用户所属角色权限、用户权限限都存入session
 				session.setAttribute(Const.SESSION_ROLE_RIGHTS, roleRights); 		//将角色权限存入session
@@ -202,7 +203,9 @@ public class LoginController extends BaseController {
 				}else{
 					allmenuList = (List<Menu>)session.getAttribute(Const.SESSION_allmenuList);
 				}
-				
+				//如果登陆用户是APP角色，直接跳转到新闻页
+				if(role.getROLE_NAME().equals(Const.APP_ROLE_NAME))
+					return new ModelAndView("redirect:/App/index.do");
 				//切换菜单=====
 				List<Menu> menuList = new ArrayList<Menu>();
 				//if(null == session.getAttribute(Const.SESSION_menuList) || ("yes".equals(pd.getString("changeMenu")))){

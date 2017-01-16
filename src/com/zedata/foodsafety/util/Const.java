@@ -52,6 +52,9 @@ public class Const {
 	public static final String[] APP_GETAPPUSER_PARAM_ARRAY = new String[]{"USERNAME"};
 	public static final String[] APP_GETAPPUSER_VALUE_ARRAY = new String[]{"用户名"};
 	
+	//APP用户角色
+	public static final String APP_ROLE_NAME = "APP用户";
+	
 
 	
 
