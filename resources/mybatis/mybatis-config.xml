@@ -13,6 +13,7 @@
 		<typeAlias type="com.zedata.foodsafety.entity.system.user.User" alias="User"/>
 		<typeAlias type="com.zedata.foodsafety.entity.system.role.Role" alias="Role"/>
 		<typeAlias type="com.zedata.foodsafety.entity.system.menu.Menu" alias="Menu"/>
+		<typeAlias type="com.zedata.foodsafety.entity.system.column.Column" alias="Column"/>
 		<typeAlias type="com.zedata.foodsafety.util.PageData" alias="pd"/>
 		<!-- 分页 -->
 		<typeAlias type="com.zedata.foodsafety.entity.Page" alias="Page"/>

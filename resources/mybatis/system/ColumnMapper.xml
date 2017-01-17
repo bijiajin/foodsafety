@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ColumnMapper">
+	
+	<resultMap type="Column" id="columnResultMap">
+		<id column="id" property="id"/>
+		<result column="name" property="name"/>
+		<result column="state" property="state"/>
+	</resultMap>
+	
+	<select id="colnmulistPage" parameterType="page" resultType="pd">
+		SELECT id as clon_id,`name` as clon_name,state as clon_state FROM food_column where 1=1
+		<if test="pd.clon_name != null and pd.clon_name != ''">
+		AND `name` LIKE CONCAT(CONCAT('%', #{pd.clon_name}),'%')
+		</if>
+		<if test="pd.clon_state != null and pd.clon_state !=''">
+		 AND state=#{pd.clon_state}
+		</if>
+	</select>
+	
+</mapper>

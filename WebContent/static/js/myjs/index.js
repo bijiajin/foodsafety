@@ -16,6 +16,7 @@
 			
 		}
 		cmainFrame();
+		//窗口(尺寸)发生变化时执行
 		window.onresize=function(){  
 			cmainFrame();
 		};

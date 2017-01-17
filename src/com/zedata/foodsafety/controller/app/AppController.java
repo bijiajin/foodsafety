@@ -50,6 +50,7 @@ public class AppController extends BaseController{
 	@RequestMapping(value="/new_default")
 	public String defaultPage(){
 		return "newpage/newsline/new_list";
+//		return "system/admin/default";
 	}
 
 }
