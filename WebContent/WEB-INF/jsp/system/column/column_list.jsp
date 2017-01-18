@@ -282,8 +282,8 @@
 							top.jzts();
 							$.ajax({
 								type: "POST",
-								url: '<%=basePath%>Column/deleteAllU.do?tm='+new Date().getTime(),
-						    	data: {USER_IDS:str},
+								url: '<%=basePath%>Column/deleteAll.do',
+						    	data: {clon_id:str},
 								dataType:'json',
 								//beforeSend: validateData,
 								cache: false,
@@ -293,10 +293,6 @@
 									 });
 								}
 							});
-						}else if(msg == '确定要给选中的用户发送邮件吗?'){
-							sendEmail(emstr);
-						}else if(msg == '确定要给选中的用户发送短信吗?'){
-							sendSms(phones);
 						}
 						
 						

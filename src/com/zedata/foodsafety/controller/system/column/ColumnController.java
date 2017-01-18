@@ -1,16 +1,22 @@
 package com.zedata.foodsafety.controller.system.column;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zedata.foodsafety.controller.base.BaseController;
 import com.zedata.foodsafety.entity.Page;
 import com.zedata.foodsafety.service.system.column.ColumnService;
+import com.zedata.foodsafety.util.AppUtil;
+import com.zedata.foodsafety.util.Jurisdiction;
 import com.zedata.foodsafety.util.PageData;
 
 /**
@@ -88,6 +94,37 @@ public class ColumnController extends BaseController{
 		columnService.deleteColn(pd);
 		mv.setViewName("save_result");
 		return mv;
+	}
+	
+	/**
+	 * 批量删除
+	 */
+	@RequestMapping(value="/deleteAll")
+	@ResponseBody
+	public Object deleteAll() {
+		PageData pd = new PageData();
+		Map<String,Object> map = new HashMap<String,Object>();
+		try {
+			pd = this.getPageData();
+			List<PageData> pdList = new ArrayList<PageData>();
+			String clon_id = pd.getString("clon_id");
+			
+			if(null != clon_id && !"".equals(clon_id)){
+				String Arrayclon_id[] = clon_id.split(",");
+				columnService.deleteAll(Arrayclon_id);
+				pd.put("msg", "ok");
+			}else{
+				pd.put("msg", "no");
+			}
+			
+			pdList.add(pd);
+			map.put("list", pdList);
+		} catch (Exception e) {
+			logger.error(e.toString(), e);
+		} finally {
+			logAfter(logger);
+		}
+		return AppUtil.returnObject(pd, map);
 	}
 	
 	

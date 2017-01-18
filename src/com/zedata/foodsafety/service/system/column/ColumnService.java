@@ -43,5 +43,12 @@ public class ColumnService {
 	public void deleteColn(PageData pd) throws Exception{
 		dao.delete("ColumnMapper.delClon", pd);
 	}
+	
+	/*
+	* 批量删除栏目
+	*/
+	public void deleteAll(String[] clon_id)throws Exception{
+		dao.delete("ColumnMapper.deleteAll", clon_id);
+	}
 
 }

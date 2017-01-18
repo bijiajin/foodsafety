@@ -36,10 +36,10 @@
 	</delete>
 	
 	<!-- 批量删除栏目 -->
-	<delete id="deleteAllClon" parameterType="String" flushCache="false">
-		delete from SYS_USER
+	<delete id="deleteAll" parameterType="String" flushCache="false">
+		delete from food_column
 		where 
-			USER_ID in
+			id in
   			 <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
                   #{item}
              </foreach>
