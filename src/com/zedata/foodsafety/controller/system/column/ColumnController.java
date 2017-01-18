@@ -41,11 +41,55 @@ public class ColumnController extends BaseController{
 		return mv;
 	}
 	
-	
+	@RequestMapping(value="/goAdd")
 	public ModelAndView goAdd(){
 		ModelAndView mv = this.getModelAndView();
 		mv.setViewName("system/column/column_add");
 		return mv;
 	}
+	
+	@RequestMapping(value="add")
+	public ModelAndView add() throws Exception{
+		ModelAndView mv = this.getModelAndView();
+		PageData pd = new PageData();
+		pd = this.getPageData();
+		columnService.addColumn(pd);
+		mv.setViewName("save_result");
+		return mv;
+	}
+	@RequestMapping(value="goEdit")
+	public ModelAndView goEdit() throws Exception{
+		ModelAndView mv = this.getModelAndView();
+		PageData pd = new PageData();
+		pd = this.getPageData();
+		pd = columnService.findByID(pd);
+		mv.setViewName("system/column/column_edit");
+		mv.addObject("msg", "editU");
+		mv.addObject("pd", pd);
+		return mv;
+	}
+	
+	@RequestMapping(value="editClon")
+	public ModelAndView editClon() throws Exception{
+		ModelAndView mv = this.getModelAndView();
+		PageData pd = new PageData();
+		pd = this.getPageData();
+		columnService.editClon(pd);
+		mv.setViewName("save_result");
+		return mv;
+	}
+	
+	
+	@RequestMapping(value="deleteColn")
+	public ModelAndView deleteColn() throws Exception{
+		ModelAndView mv = this.getModelAndView();
+		PageData pd = new PageData();
+		pd = this.getPageData();
+		columnService.deleteColn(pd);
+		mv.setViewName("save_result");
+		return mv;
+	}
+	
+	
 
 }

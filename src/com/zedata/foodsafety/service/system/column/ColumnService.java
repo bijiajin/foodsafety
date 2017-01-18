@@ -27,5 +27,21 @@ public class ColumnService {
 	public List<PageData> listPdPageColumn(Page pd) throws Exception{
 		return (List<PageData>)dao.findForList("ColumnMapper.colnmulistPage", pd);
 	}
+	
+	public void addColumn(PageData pd) throws Exception{
+		dao.save("ColumnMapper.addColumn", pd);
+	}
+	
+	public PageData findByID(PageData pd) throws Exception{
+		return (PageData)dao.findForObject("ColumnMapper.findByID", pd);
+	}
+	
+	public void editClon(PageData pd) throws Exception{
+		dao.update("ColumnMapper.editClon", pd);
+	}
+	
+	public void deleteColn(PageData pd) throws Exception{
+		dao.delete("ColumnMapper.delClon", pd);
+	}
 
 }

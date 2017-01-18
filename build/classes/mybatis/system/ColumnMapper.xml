@@ -19,4 +19,29 @@
 		</if>
 	</select>
 	
+	<insert id="addColumn" parameterType="pd">
+		INSERT INTO `food_column`(name,state) VALUES (#{clon_name}, #{clon_state});
+	</insert>
+	
+	<select id="findByID" parameterType="pd" resultType="pd">
+		SELECT id as clon_id,`name` as clon_name,state as clon_state FROM food_column where id = #{clon_id}
+	</select>
+	
+	<update id="editClon" parameterType="pd">
+		UPDATE food_column SET `name`=#{clon_name},state=#{clon_state} WHERE id=#{clon_id}
+	</update>
+	
+	<delete id="delClon" parameterType="pd">
+		DELETE FROM food_column WHERE id=#{clon_id}
+	</delete>
+	
+	<!-- 批量删除栏目 -->
+	<delete id="deleteAllClon" parameterType="String" flushCache="false">
+		delete from SYS_USER
+		where 
+			USER_ID in
+  			 <foreach item="item" index="index" collection="array" open="(" separator="," close=")">
+                  #{item}
+             </foreach>
+	</delete>
 </mapper>

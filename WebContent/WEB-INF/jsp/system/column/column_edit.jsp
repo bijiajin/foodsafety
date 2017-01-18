@@ -46,19 +46,20 @@
 </script>
 	</head>
 <body>
-		<form action="Column/add.do" name="form1" id="form1"  method="post">
+		<form action="Column/editClon.do" name="form1" id="form1"  method="post">
+			<input type="hidden" name="clon_id" id="clon_id" value="${pd.clon_id }"/>
 			<div id="zhongxin">
 			<table>
 				<tr>
 					<td>
-						<input type="text" name="clon_name" id="columnName" placeholder="这里输入栏目名称" title="名称"/>
+						<input type="text" name="clon_name" id="columnName" placeholder="这里输入栏目名称" title="名称" value="${pd.clon_name} "/>
 					</td>
 				</tr>
 				<tr>
 					<td>
 						<select class="input_txt" name="clon_state" id="clon_state" data-placeholder="请选择状态">
-							<option value="1" >启用</option>
-							<option value="2" >禁用</option>
+							<option value="1" <c:if test="${pd.clon_state == 1 }">selected</c:if>>启用</option>
+							<option value="2" <c:if test="${pd.clon_state == 2}">selected</c:if>>禁用</option>
 						</select>
 					</td>
 				</tr>

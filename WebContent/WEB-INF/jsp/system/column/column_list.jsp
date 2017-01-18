@@ -93,10 +93,10 @@
 										
 										
 										<c:if test="${QX.edit == 1 }">
-											<a class='btn btn-mini btn-info' title="编辑" onclick="editUser('${column.clon_id }');"><i class='icon-edit'></i></a>
+											<a class='btn btn-mini btn-info' title="编辑" onclick="editColn('${column.clon_id }');"><i class='icon-edit'></i></a>
 										</c:if>
 										<c:if test="${QX.del == 1 }">
-											<a class='btn btn-mini btn-danger' title="删除" onclick="delUser('${column.clon_id }');"><i class='icon-trash'></i></a>
+											<a class='btn btn-mini btn-danger' title="删除" onclick="delColn('${column.clon_id }','${column.clon_name }');"><i class='icon-trash'></i></a>
 										</c:if>
 										
 									</div>
@@ -190,7 +190,7 @@
 			 diag.Title ="新增";
 			 diag.URL = '<%=basePath%>Column/goAdd.do';
 			 diag.Width = 225;
-			 diag.Height = 415;
+			 diag.Height = 160;
 			 diag.CancelEvent = function(){ //关闭事件
 				 if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
 					 if('${page.currentPage}' == '0'){
@@ -206,14 +206,14 @@
 		}
 		
 		//修改
-		function editUser(user_id){
+		function editColn(coln_id){
 			 top.jzts();
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="资料";
-			 diag.URL = '<%=basePath%>user/goEditU.do?USER_ID='+user_id;
+			 diag.URL = '<%=basePath%>Column/goEdit.do?clon_id='+coln_id;
 			 diag.Width = 225;
-			 diag.Height = 415;
+			 diag.Height = 160;
 			 diag.CancelEvent = function(){ //关闭事件
 				 if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
 					nextPage(${page.currentPage});
@@ -224,11 +224,11 @@
 		}
 		
 		//删除
-		function delUser(userId,msg){
+		function delColn(clon_id,msg){
 			bootbox.confirm("确定要删除["+msg+"]吗?", function(result) {
 				if(result) {
 					top.jzts();
-					var url = "<%=basePath%>user/deleteU.do?USER_ID="+userId+"&tm="+new Date().getTime();
+					var url = "<%=basePath%>Column/deleteColn.do?clon_id="+clon_id;
 					$.get(url,function(data){
 						nextPage(${page.currentPage});
 					});
@@ -282,7 +282,7 @@
 							top.jzts();
 							$.ajax({
 								type: "POST",
-								url: '<%=basePath%>user/deleteAllU.do?tm='+new Date().getTime(),
+								url: '<%=basePath%>Column/deleteAllU.do?tm='+new Date().getTime(),
 						    	data: {USER_IDS:str},
 								dataType:'json',
 								//beforeSend: validateData,
