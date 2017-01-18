@@ -188,7 +188,7 @@
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
 			 diag.Title ="新增";
-			 diag.URL = '<%=basePath%>user/goAddU.do';
+			 diag.URL = '<%=basePath%>Column/goAdd.do';
 			 diag.Width = 225;
 			 diag.Height = 415;
 			 diag.CancelEvent = function(){ //关闭事件

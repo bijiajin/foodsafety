@@ -40,5 +40,12 @@ public class ColumnController extends BaseController{
 		 mv.setViewName("system/column/column_list");
 		return mv;
 	}
+	
+	
+	public ModelAndView goAdd(){
+		ModelAndView mv = this.getModelAndView();
+		mv.setViewName("system/column/column_add");
+		return mv;
+	}
 
 }
