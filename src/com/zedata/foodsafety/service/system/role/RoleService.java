@@ -109,6 +109,11 @@ public class RoleService{
 		dao.update("RoleMapper.updateRoleRights", role);
 	}
 	
+	
+	public void updateRoleColumn(Role role) throws Exception {
+		dao.update("RoleMapper.updateRoleColumn", role);
+	}
+	
 	/**
 	 * 权限(增删改查)
 	 */
@@ -135,6 +140,16 @@ public class RoleService{
 	 */
 	public void setAllRights(PageData pd) throws Exception {
 		dao.update("RoleMapper.setAllRights", pd);
+		
+	}
+	
+	/**
+	 * 给全部子职位加栏目权限
+	 * @param pd
+	 * @throws Exception
+	 */
+	public void setAllColumn(PageData pd) throws Exception {
+		dao.update("RoleMapper.setAllColumn", pd);
 		
 	}
 	
