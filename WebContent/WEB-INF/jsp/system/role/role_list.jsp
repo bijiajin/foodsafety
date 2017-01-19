@@ -63,6 +63,8 @@
 					<c:otherwise>
 					<c:if test="${QX.edit == 1 }">
 					<a class="btn btn-mini btn-purple" onclick="editRights('${pd.ROLE_ID }');"><i class="icon-pencil"></i>组菜单权限</a>
+					<a class="btn btn-mini btn-purple" onclick="editColumns('${pd.ROLE_ID }');"><i class="icon-list"></i>分配栏目</a>
+					<a class='btn btn-mini btn-danger' title="删除" onclick="delRole('${pd.ROLE_ID }','z','${pd.ROLE_NAME }');"><i class='icon-trash'></i></a>
 					</c:if>
 					</c:otherwise>
 				</c:choose>
@@ -473,6 +475,21 @@
 			 diag.Drag = true;
 			 diag.Title = "菜单权限";
 			 diag.URL = '<%=basePath%>role/auth.do?ROLE_ID='+ROLE_ID;
+			 diag.Width = 280;
+			 diag.Height = 370;
+			 diag.CancelEvent = function(){ //关闭事件
+				diag.close();
+			 };
+			 diag.show();
+		}
+		
+		//栏目权限
+		function editColumns(ROLE_ID){
+			top.jzts();
+			 var diag = new top.Dialog();
+			 diag.Drag = true;
+			 diag.Title = "栏目权限分配";
+			 diag.URL = '<%=basePath%>role/Column.do?ROLE_ID='+ROLE_ID;
 			 diag.Width = 280;
 			 diag.Height = 370;
 			 diag.CancelEvent = function(){ //关闭事件

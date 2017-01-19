@@ -54,7 +54,8 @@ public class Const {
 	
 	//APP用户角色
 	public static final String APP_ROLE_NAME = "APP用户";
-	
+	public static final String SESSION_allColumnList = "allcolumnList";		//全部栏目
+	public static final String SESSION_ROLE_RH_COLUMN = "sessionRoleRHColumn";
 
 	
 

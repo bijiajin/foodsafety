@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.zedata.foodsafety.dao.DaoSupport;
 import com.zedata.foodsafety.entity.Page;
+import com.zedata.foodsafety.entity.system.column.Column;
 import com.zedata.foodsafety.util.PageData;
 
 /**
@@ -49,6 +50,10 @@ public class ColumnService {
 	*/
 	public void deleteAll(String[] clon_id)throws Exception{
 		dao.delete("ColumnMapper.deleteAll", clon_id);
+	}
+	
+	public List<Column> listAllColumn() throws Exception{
+		return (List<Column>) dao.findForList("ColumnMapper.listAllColumn", null);
 	}
 
 }

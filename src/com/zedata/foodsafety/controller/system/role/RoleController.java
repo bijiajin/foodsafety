@@ -23,8 +23,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.zedata.foodsafety.controller.base.BaseController;
 import com.zedata.foodsafety.entity.Page;
+import com.zedata.foodsafety.entity.system.column.Column;
 import com.zedata.foodsafety.entity.system.menu.Menu;
 import com.zedata.foodsafety.entity.system.role.Role;
+import com.zedata.foodsafety.service.system.column.ColumnService;
 import com.zedata.foodsafety.service.system.menu.MenuService;
 import com.zedata.foodsafety.service.system.role.RoleService;
 import com.zedata.foodsafety.util.AppUtil;
@@ -50,6 +52,8 @@ public class RoleController extends BaseController {
 	private MenuService menuService;
 	@Resource(name="roleService")
 	private RoleService roleService;
+	@Resource(name="columnService")
+	private ColumnService columnService;
 	
 	/**
 	 * 权限(增删改查)
@@ -286,6 +290,34 @@ public class RoleController extends BaseController {
 	}
 	
 	/**
+	 * 请求角色栏目授权页面
+	 */
+	@RequestMapping(value="/Column")
+	public String Column(@RequestParam String ROLE_ID,Model model)throws Exception{
+		
+		try{
+			List<Column> columnList = columnService.listAllColumn();
+			Role role = roleService.getRoleById(ROLE_ID);
+			String columnRights = role.getRH_COLUMNS();
+			if(Tools.notEmpty(columnRights)){
+				for(Column colu : columnList){
+					colu.setChecked(RightsHelper.testRights(columnRights, colu.getClon_id()));
+					
+				}
+			}
+			JSONArray arr = JSONArray.fromObject(columnList);
+			String json = arr.toString();
+			json = json.replaceAll("clon_id", "id").replaceAll("clon_name", "name");
+			model.addAttribute("zTreeNodes", json);
+			model.addAttribute("roleId", ROLE_ID);
+		} catch(Exception e){
+			logger.error(e.toString(), e);
+		}
+		
+		return "authorization_column";
+	}
+	
+	/**
 	 * 请求角色按钮授权页面
 	 */
 	@RequestMapping(value="/button")
@@ -355,6 +387,38 @@ public class RoleController extends BaseController {
 					
 					pd.put("roleId", ROLE_ID);
 					roleService.setAllRights(pd);
+			}
+			out.write("success");
+			out.close();
+		} catch(Exception e){
+			logger.error(e.toString(), e);
+		}
+	}
+	
+	/**
+	 * 保存角色栏目权限
+	 */
+	@RequestMapping(value="/Column/save")
+	public void saveColumn(@RequestParam String ROLE_ID,@RequestParam String ColumnIDs,PrintWriter out)throws Exception{
+		PageData pd = new PageData();
+		try{
+			if(Jurisdiction.buttonJurisdiction(menuUrl, "edit")){
+				if(null != ColumnIDs && !"".equals(ColumnIDs.trim())){
+					BigInteger ColumnID = RightsHelper.sumRights(Tools.str2StrArray(ColumnIDs));
+					Role role = roleService.getRoleById(ROLE_ID);
+					role.setRH_COLUMNS(ColumnID.toString());
+					roleService.updateRoleColumn(role);
+					pd.put("RH_COLUMNS",ColumnID.toString());
+				}else{
+					Role role = new Role();
+					role.setRH_COLUMNS("");
+					role.setROLE_ID(ROLE_ID);
+					roleService.updateRoleColumn(role);
+					pd.put("RH_COLUMNS","");
+				}
+					
+					pd.put("roleId", ROLE_ID);
+					roleService.setAllColumn(pd);
 			}
 			out.write("success");
 			out.close();

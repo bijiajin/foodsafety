@@ -19,6 +19,7 @@ public class Role {
 	private String EDIT_QX;
 	private String CHA_QX;
 	private String QX_ID;
+	private String RH_COLUMNS;
 	
 	public String getQX_ID() {
 		return QX_ID;
@@ -74,6 +75,13 @@ public class Role {
 	public void setCHA_QX(String cHA_QX) {
 		CHA_QX = cHA_QX;
 	}
+	public String getRH_COLUMNS() {
+		return RH_COLUMNS;
+	}
+	public void setRH_COLUMNS(String rH_COLUMNS) {
+		RH_COLUMNS = rH_COLUMNS;
+	}
+	
 	
 	
 }

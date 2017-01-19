@@ -38,8 +38,8 @@
 					 	<select class="chzn-select" name="clon_state" id="clon_state" data-placeholder="请选择状态" style="vertical-align:top;width: 120px;">
 							<option value=""></option>
 							<option value="">全部</option>
-							<option value="1" <c:if test="${pd.state==1}">selected</c:if>>启用</option>
-							<option value="2" <c:if test="${pd.state==2}">selected</c:if>>禁用</option>
+							<option value="1" <c:if test="${pd.clon_state==1}">selected</c:if>>启用</option>
+							<option value="2" <c:if test="${pd.clon_state==2}">selected</c:if>>禁用</option>
 					  	</select>
 					</td>
 					<c:if test="${QX.cha == 1 }">

@@ -4,11 +4,12 @@
 <mapper namespace="ColumnMapper">
 	
 	<resultMap type="Column" id="columnResultMap">
-		<id column="id" property="id"/>
-		<result column="name" property="name"/>
-		<result column="state" property="state"/>
+		<id column="id" property="clon_id"/>
+		<result column="name" property="clon_name"/>
+		<result column="state" property="clon_state"/>
 	</resultMap>
 	
+	<!-- 分页查询所有栏目。用于栏目列表 -->
 	<select id="colnmulistPage" parameterType="page" resultType="pd">
 		SELECT id as clon_id,`name` as clon_name,state as clon_state FROM food_column where 1=1
 		<if test="pd.clon_name != null and pd.clon_name != ''">
@@ -19,18 +20,22 @@
 		</if>
 	</select>
 	
+	<!-- 添加栏目 -->
 	<insert id="addColumn" parameterType="pd">
 		INSERT INTO `food_column`(name,state) VALUES (#{clon_name}, #{clon_state});
 	</insert>
 	
+	<!-- 根据ID查找栏目。用于修改 -->
 	<select id="findByID" parameterType="pd" resultType="pd">
 		SELECT id as clon_id,`name` as clon_name,state as clon_state FROM food_column where id = #{clon_id}
 	</select>
 	
+	<!-- 根据id修改栏目 -->
 	<update id="editClon" parameterType="pd">
 		UPDATE food_column SET `name`=#{clon_name},state=#{clon_state} WHERE id=#{clon_id}
 	</update>
 	
+	<!-- 根据id删除栏目 -->
 	<delete id="delClon" parameterType="pd">
 		DELETE FROM food_column WHERE id=#{clon_id}
 	</delete>
@@ -44,4 +49,9 @@
                   #{item}
              </foreach>
 	</delete>
+	
+	<!-- 获取所有可用的栏目 -->
+	<select id="listAllColumn" resultMap="columnResultMap">
+		SELECT id as clon_id,`name` as clon_name,state as clon_state FROM food_column where state = 1
+	</select>
 </mapper>

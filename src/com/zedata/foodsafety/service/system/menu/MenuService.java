@@ -44,6 +44,11 @@ public class MenuService{
 		
 	}
 	
+	/**
+	 * 获取一级菜单
+	 * @return
+	 * @throws Exception
+	 */
 	public List<Menu> listAllParentMenu() throws Exception {
 		return (List<Menu>) dao.findForList("MenuMapper.listAllParentMenu", null);
 		
@@ -57,7 +62,13 @@ public class MenuService{
 			dao.save("MenuMapper.insertMenu", menu);
 		}
 	}
-
+	
+	/**
+	 * 获取二级菜单
+	 * @param parentId
+	 * @return
+	 * @throws Exception
+	 */
 	public List<Menu> listSubMenuByParentId(String parentId) throws Exception {
 		return (List<Menu>) dao.findForList("MenuMapper.listSubMenuByParentId", parentId);
 		

@@ -19,6 +19,7 @@ public class Column implements Serializable{
 	private Integer clon_id;//栏目ID
 	private String clon_name;//栏目名称
 	private Integer clon_state;//栏目状态(1:使用，2:禁用)
+	private boolean checked = false;
 	public Integer getClon_id() {
 		return clon_id;
 	}
@@ -36,6 +37,12 @@ public class Column implements Serializable{
 	}
 	public void setClon_state(Integer clon_state) {
 		this.clon_state = clon_state;
+	}
+	public boolean isChecked() {
+		return checked;
+	}
+	public void setChecked(boolean checked) {
+		this.checked = checked;
 	}
 	
 	

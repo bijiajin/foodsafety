@@ -149,6 +149,13 @@
 		where PARENT_ID=#{roleId}
 	</update>
 	
+	<!-- 给全部子职位加栏目权限 -->
+	<update id="setAllColumn" parameterType="pd">
+		update SYS_ROLE 
+		set RH_COLUMNS=#{RH_COLUMNS} 
+		where PARENT_ID=#{roleId}
+	</update>
+	
 	<update id="add_qx" parameterType="pd">
 		update SYS_ROLE 
 		set ADD_QX=#{value} 
@@ -242,6 +249,13 @@
 		set RIGHTS=#{RIGHTS} 
 		where ROLE_ID=#{ROLE_ID}
 	</update>
+	
+	<update id="updateRoleColumn" parameterType="Role">
+		update SYS_ROLE 
+		set RH_COLUMNS=#{RH_COLUMNS} 
+		where ROLE_ID=#{ROLE_ID}
+	</update>
+	
 	<delete id="deleteRoleById" parameterType="String">
 		delete from SYS_ROLE 
 		where ROLE_ID=#{ROLE_ID}
