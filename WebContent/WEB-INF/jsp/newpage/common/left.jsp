@@ -29,7 +29,7 @@
 					</li>
 
 
-			<c:forEach items="${columnList}" var="column">
+			<c:forEach items="${columnList}" var="column" varStatus="vs">
 				<c:if test="${column.checked}">
 				<li id="lm${column.clon_id }">
 					  <a style="cursor:pointer;" class="dropdown-toggle" >

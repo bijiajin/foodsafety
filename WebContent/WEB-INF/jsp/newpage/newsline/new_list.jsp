@@ -20,36 +20,90 @@
 	<div class="container">
         <div class="main">
             <ul class="cbp_tmtimeline">
-                <li>
-                    <time class="cbp_tmtime" datetime="2013-04-10 18:30">
-                        <span>4/10/13</span> <span>18:30</span></time>
-                    <div class="cbp_tmicon cbp_tmicon-phone">
-                    </div>
-                    <div class="cbp_tmlabel">
-                        <h2>
-                            Ricebean black-eyed pea</h2>
-                        <p>
-                            Winter purslane courgette pumpkin quandong komatsuna fennel green bean cucumber
-                            watercress. Pea sprouts wattle seed rutabaga okra yarrow cress avocado grape radish
-                            bush tomato ricebean black-eyed pea maize eggplant. Cabbage lentil cucumber chickpea
-                            sorrel gram garbanzo plantain lotus root bok choy squash cress potato summer purslane
-                            salsify fennel horseradish dulse. Winter purslane garbanzo artichoke broccoli lentil
-                            corn okra silver beet celery quandong. Plantain salad beetroot bunya nuts black-eyed
-                            pea collard greens radish water spinach gourd chicory prairie turnip avocado sierra
-                            leone bologi.</p>
-                            <h2></h2>
-                            <div class="pull-left">
-                                 <i class="icon-hand-right grey bigger-125"></i>
-                                 <a href="http://www.sda.gov.cn/WS01/CL0051/168249.html" target="_blank" class="bigger-110">查看详情 &hellip;</a>
-                            </div>
-                    </div>
-                </li>
+            	<c:choose>
+	            	<c:when test="${not empty contentList}">
+	            		<c:forEach items="${contentList}" var="content" varStatus="vs">
+	            			<li>
+			                    <time class="cbp_tmtime" datetime="${content.pubtime}">
+			                        <span>
+			                        	<fmt:formatDate value="${content.pubtime}" type="date"/>
+			                        </span> 
+			                        <span>
+			                        	<fmt:formatDate value="${content.pubtime}" type="time"/> 
+			                        </span>
+			                    </time>
+			                    <div class="cbp_tmicon cbp_tmicon-phone">
+			                    </div>
+			                    <div class="cbp_tmlabel">
+			                        <h2>
+			                        	<span>${content.title}</span>
+			                        	<br/>
+			                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			                            
+			                            
+			                            <span>来源：${content.source}</span>
+			                        </h2>
+			                        <p>
+			                        	${content.summary}
+			                         </p>
+			                         <h2></h2>
+			                         <div class="pull-left">
+			                             <i class="icon-hand-right grey bigger-125"></i>
+<%-- 			                             <a href="${content.link}" target="_blank" class="bigger-110">查看详情 &hellip;</a> --%>
+			                             <a title="查看详情" onclick="checkLink('${content.link }');" class="bigger-110">查看详情 &hellip;</a>
+<%-- 			                        	<a  title="查看详情" onclick="checkDetails('${content.infoid }');" class="bigger-110">查看详情 &hellip;</a> --%>
+			                         </div>
+			                    </div>
+			                </li>
+	            		</c:forEach>
+	            	</c:when>
+            	</c:choose>
+                
                 
             </ul>
         </div>
     </div>
+    <!-- 返回顶部  -->
+		<a href="#" id="btn-scroll-up" class="btn btn-small btn-inverse">
+			<i class="icon-double-angle-up icon-only"></i>
+		</a>
     <script type="text/javascript">
     	$(top.hangge());
+    	
+    	function checkDetails(infoid){
+			 top.jzts();
+			 var diag = new top.Dialog();
+			 diag.Drag=true;
+			 diag.Title ="新闻详情";
+			 diag.URL = '<%=basePath%>App/checkDetails.do?infoid='+infoid;
+			 diag.Width = 1055;
+			 diag.Height = 680;
+			 diag.CancelEvent = function(){ //关闭事件
+				
+				diag.close();
+			 };
+			 diag.show();
+		}
+    	
+    	function checkLink(link){
+			 top.jzts();
+			 var diag = new top.Dialog();
+			 diag.Drag=true;
+			 diag.Title ="新闻详情";
+			 diag.URL = link;
+			 diag.Width = 1055;
+			 diag.Height = 680;
+			 diag.CancelEvent = function(){ //关闭事件
+				
+				diag.close();
+			 };
+			 diag.show();
+		}
     </script>
 </body>
 </html>

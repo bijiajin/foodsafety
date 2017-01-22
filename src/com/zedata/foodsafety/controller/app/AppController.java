@@ -13,10 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zedata.foodsafety.controller.base.BaseController;
+import com.zedata.foodsafety.entity.Page;
 import com.zedata.foodsafety.entity.system.column.Column;
 import com.zedata.foodsafety.entity.system.menu.Menu;
 import com.zedata.foodsafety.entity.system.role.Role;
 import com.zedata.foodsafety.entity.system.user.User;
+import com.zedata.foodsafety.service.app.AppContentService;
 import com.zedata.foodsafety.service.system.column.ColumnService;
 import com.zedata.foodsafety.service.system.user.UserService;
 import com.zedata.foodsafety.util.Const;
@@ -40,6 +42,8 @@ public class AppController extends BaseController{
 	private UserService userService;
 	@Resource(name="columnService")
 	private ColumnService columnService;
+	@Resource(name="appContentService")
+	private AppContentService appContentService;
 	
 	@RequestMapping(value="index")
 	public ModelAndView toAppIndex(){
@@ -114,11 +118,32 @@ public class AppController extends BaseController{
 	/**
 	 * 进入首页后的默认页面
 	 * @return
+	 * @throws Exception 
 	 */
 	@RequestMapping(value="/new_default")
-	public String defaultPage(){
-		return "newpage/newsline/new_list";
+	public ModelAndView defaultPage(Page page) throws Exception{
+		ModelAndView mv = this.getModelAndView();
+		mv.setViewName("newpage/newsline/new_list");
+		PageData pd = new PageData();
+		pd = this.getPageData();
+		page.setPd(pd);
+		List<PageData> contentList = appContentService.listPdPageContent(page);
+		mv.addObject("contentList", contentList);
+		return mv;
 //		return "system/admin/default";
+	}
+	
+	@RequestMapping(value="/checkDetails")
+	public ModelAndView checkDetails() throws Exception{
+		ModelAndView mv = this.getModelAndView();
+		mv.setViewName("newpage/newsline/new_details");
+		PageData pd = new PageData();
+		pd = this.getPageData();
+		pd = appContentService.findByID(pd);
+		mv.addObject("msg", "edit");
+		mv.addObject("pd", pd);
+		return mv;
+		
 	}
 
 }

@@ -1,10 +1,14 @@
 package com.zedata.foodsafety.service.app;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import com.zedata.foodsafety.dao.DaoSupport;
+import com.zedata.foodsafety.entity.Page;
+import com.zedata.foodsafety.util.PageData;
 
 /**
  * @类名:AppContentService.java 
@@ -20,6 +24,13 @@ public class AppContentService {
 	@Resource(name = "daoSupport")
 	private DaoSupport dao;
 	
+	public List<PageData> listPdPageContent(Page pd) throws Exception{
+		return (List<PageData>)dao.findForList("ContentMapper.contentlistPage", pd);
+	}
+	
+	public PageData findByID(PageData pd) throws Exception{
+		return (PageData)dao.findForObject("ContentMapper.findByID", pd);
+	}
 	
 	
 
