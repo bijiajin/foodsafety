@@ -11,6 +11,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Access-Control-Allow-Origin" content="*"> 
 <base href="<%=basePath%>">
 <!-- jsp文件头和头部 -->
 <%@ include file="../../system/admin/top.jsp"%>
@@ -21,21 +22,25 @@
         <div class="main">
             
 	            	
-			                    <div class="cbp_tmlabel">
-			                        <h2>
-			                            ${pd.title}
-			                        </h2>
-			                        <p>
-			                        	${pd.content}
-			                         </p>
-			                         
+			                    <div class="cbp_tmlabel" id="content">
+			                        <iframe   
+			                        name="ifr1" 
+			                        id="ifr1" 
+			                        frameborder="0" 
+			                        scrolling="auto"  
+			                        src="${pd.link}" 
+			                        width="900px" 
+			                        height="680px"
+			                        >
+			                        </iframe>
 			                    </div>
 			           
         </div>
     </div>
+	 
     <script type="text/javascript">
     	$(top.hangge());
-    	
+  	 
     	
     </script>
 </body>

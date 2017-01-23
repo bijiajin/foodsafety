@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -126,9 +127,29 @@ public class AppController extends BaseController{
 		mv.setViewName("newpage/newsline/new_list");
 		PageData pd = new PageData();
 		pd = this.getPageData();
+		String colunm = pd.getString("clon_name");
+		if(!StringUtils.isEmpty(colunm)){
+			switch (colunm) {
+			case "今日关注":
+				pd.put("jr", "jr");
+				break;
+			case "一周要闻":
+				pd.put("yz", "yz");
+				break;
+			case "东莞信息":
+				pd.put("is_dongguan", "is_dongguan");
+				break;
+			case "广东信息":
+				pd.put("is_guangdong", "is_guangdong");
+				break;
+			default:
+				break;
+			}
+		}
 		page.setPd(pd);
 		List<PageData> contentList = appContentService.listPdPageContent(page);
 		mv.addObject("contentList", contentList);
+		mv.addObject("pd", pd);
 		return mv;
 //		return "system/admin/default";
 	}

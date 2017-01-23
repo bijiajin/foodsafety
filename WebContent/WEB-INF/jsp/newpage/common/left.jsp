@@ -32,7 +32,7 @@
 			<c:forEach items="${columnList}" var="column" varStatus="vs">
 				<c:if test="${column.checked}">
 				<li id="lm${column.clon_id }">
-					  <a style="cursor:pointer;" class="dropdown-toggle" >
+					  <a style="cursor:pointer;" class="dropdown-toggle" target="mainFrame"  onclick="siMenu('tab1_index1','tab1_index1','${column.clon_name }','<%=basePathl%>App/new_default.do?clon_name=${column.clon_name }')" >
 						<i class="icon-desktop"></i>
 						<span>${column.clon_name }</span>
 <!-- 						<b class="arrow icon-angle-down"></b> -->
