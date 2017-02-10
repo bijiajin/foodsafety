@@ -124,7 +124,7 @@ public class AppController extends BaseController{
 	@RequestMapping(value="/new_default")
 	public ModelAndView defaultPage(Page page) throws Exception{
 		ModelAndView mv = this.getModelAndView();
-		mv.setViewName("newpage/newsline/new_list");
+		mv.setViewName("newpage/newsline/new_list2");
 		PageData pd = new PageData();
 		pd = this.getPageData();
 		String colunm = pd.getString("clon_name");

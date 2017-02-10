@@ -53,7 +53,7 @@ $( function() {
 	});
 	tab.add( {
 		id :'tab1_index1',
-		title :"主页",
+		title :"新闻列表",
 		url :"<%=basePath%>App/new_default.do",
 		isClosed :false
 	});
