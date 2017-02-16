@@ -154,6 +154,76 @@ public class AppController extends BaseController{
 //		return "system/admin/default";
 	}
 	
+	/**
+	 * 进入首页后的默认页面
+	 * @return
+	 * @throws Exception 
+	 */
+	@RequestMapping(value="/new_def")
+	public ModelAndView defPage(Page page) throws Exception{
+		String gotoHtml = "jinri_list";
+		ModelAndView mv = this.getModelAndView();
+		PageData pd = new PageData();
+		pd = this.getPageData();
+		
+		String newsType = pd.getString("n");
+		if(!StringUtils.isEmpty(newsType)){
+			switch (newsType) {
+			case "jr":
+				pd.put("jr", "jr");
+				pd.put("n", "jr");
+				gotoHtml = "jinri_list";
+				break;
+			case "yz":
+				pd.put("yz", "yz");
+				pd.put("n", "yz");
+				gotoHtml = "yizhou_list";
+				break;
+			case "dg":
+				pd.put("is_dongguan", "is_dongguan");
+				pd.put("n", "dg");
+				gotoHtml = "dongguan_list";
+				break;
+			case "gd":
+				pd.put("is_guangdong", "is_guangdong");
+				pd.put("n", "gd");
+				gotoHtml = "guangdong_list";
+				break;
+			default:
+				break;
+			}
+		}
+		
+//		String colunm = pd.getString("clon_name");
+//		if(!StringUtils.isEmpty(colunm)){
+//			switch (colunm) {
+//			case "今日关注":
+//				pd.put("jr", "jr");
+//				break;
+//			case "一周要闻":
+//				pd.put("yz", "yz");
+//				break;
+//			case "东莞信息":
+//				pd.put("is_dongguan", "is_dongguan");
+//				break;
+//			case "广东信息":
+//				pd.put("is_guangdong", "is_guangdong");
+//				break;
+//			default:
+//				break;
+//			}
+//		}
+		page.setPd(pd);
+		List<PageData> contentList = appContentService.listPdPageContent(page);
+		mv.addObject("contentList", contentList);
+		
+		
+		mv.addObject("pd", pd);
+		mv.setViewName("newpage/newsline/"+gotoHtml);
+		return mv;
+//		return "system/admin/default";
+	}
+	
 	@RequestMapping(value="/checkDetails")
 	public ModelAndView checkDetails() throws Exception{
 		ModelAndView mv = this.getModelAndView();

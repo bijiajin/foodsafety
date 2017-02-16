@@ -205,7 +205,9 @@ public class LoginController extends BaseController {
 				}
 				//如果登陆用户是APP角色，直接跳转到新闻页
 				if(role.getROLE_NAME().equals(Const.APP_ROLE_NAME))
-					return new ModelAndView("redirect:/App/index.do");
+//					return new ModelAndView("redirect:/App/index.do");
+					return new ModelAndView("redirect:/App/new_def.do");
+					
 				//切换菜单=====
 				List<Menu> menuList = new ArrayList<Menu>();
 				//if(null == session.getAttribute(Const.SESSION_menuList) || ("yes".equals(pd.getString("changeMenu")))){
