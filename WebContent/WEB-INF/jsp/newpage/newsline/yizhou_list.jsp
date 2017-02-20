@@ -12,16 +12,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="<%=basePath%>static/css/news/layout.css">
 <link rel="stylesheet" href="<%=basePath%>static/css/news/home.css">
-<script type="text/javascript" src="<%=basePath%>static/js/news/jquery.min.js"></script>
-<script type="text/javascript">uaredirect("http://toutiao.92kaifa.com/");</script>
-<script type="text/javascript" src="<%=basePath%>static/js/news/ajax.js"></script>
-<title>今日关注</title>
+<script type="text/javascript" src="<%=basePath%>static/js/news/jquery-2.0.3.min.js"></script>
+<title>一周要闻</title>
 <script>
         var curpage = 1;
-        var totalpage = 25;
-        var geturl = '<%=basePath%>App/newList.do?&page=';
+        var totalpage = 375;
+        var geturl = '/e/extend/list/?classid=47,33,32,31,30,29,28,27,26,25,34,35,36,46,45,44,43,42,41,39,38,37,24,23,10,9,8,7,6,5,4,3,2,11,12,13,22,21,20,19,18,17,16,15,14,1,&orderby=newstime&page=';
     </script>
-<script type="text/javascript" charset="utf-8" src="<%=basePath%>static/js/news/scrollpagination.js"></script>
+    <script type="text/javascript" charset="utf-8" src="<%=basePath%>static/js/scrollpagination.js"></script>
 </head>
 <body style="min-width: 1220px; overflow-x: hidden;">
 	<div class="y-wrap">
@@ -163,8 +161,7 @@
         </div>
         <div riot-tag="verification"></div>
 
-        <!-- -->
-        <script src="<%=basePath%>static/js/news/home.js"></script>
+        <!--
          <script>
              riot.mount('topbar', {
                  home: true
@@ -202,7 +199,7 @@
              riot.mount('hotPicture');
          </script>
 
-
+ -->
 
     </div>
 </div>

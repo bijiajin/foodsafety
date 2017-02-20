@@ -18,8 +18,8 @@
 <title>今日关注</title>
 <script>
         var curpage = 1;
-        var totalpage = 25;
-        var geturl = '<%=basePath%>App/newList.do?&page=';
+        var totalpage = 375;
+        var geturl = '<%=basePath%>App/new_def.do?classid=47,33,32,31,30,29,28,27,26,25,34,35,36,46,45,44,43,42,41,39,38,37,24,23,10,9,8,7,6,5,4,3,2,11,12,13,22,21,20,19,18,17,16,15,14,1,&orderby=newstime&page=';
     </script>
 <script type="text/javascript" charset="utf-8" src="<%=basePath%>static/js/news/scrollpagination.js"></script>
 </head>

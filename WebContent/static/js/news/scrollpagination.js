@@ -34,6 +34,7 @@ var loading = false; (function($) {
                 url: opts.contentPage + curpage,
                 data: opts.contentData,
                 success: function(data) {
+                	console.log(data);
                     loading = false;
                     $(obj).append(data);
                     var objectsRendered = $(obj).children('[rel!=loaded]');
@@ -41,7 +42,7 @@ var loading = false; (function($) {
                         opts.afterLoad(objectsRendered)
                     }
                 },
-                dataType: 'html'
+                dataType: 'string'
             })
         }
     };

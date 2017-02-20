@@ -11,6 +11,7 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zedata.foodsafety.controller.base.BaseController;
@@ -235,6 +236,72 @@ public class AppController extends BaseController{
 		mv.addObject("pd", pd);
 		return mv;
 		
+	}
+	
+	@RequestMapping(value="newList", produces = {"application/json;charset=UTF-8"})
+	@ResponseBody
+	public String newList(Page page) throws Exception{
+		PageData pd = new PageData();
+		pd = this.getPageData();
+		String nowpage = pd.getString("page");
+		String newsType = pd.getString("n");
+		String keyboard = pd.getString("keyboard");
+		if(!StringUtils.isEmpty(newsType)){
+			switch (newsType) {
+			case "jr":
+				pd.put("jr", "jr");
+				pd.put("n", "jr");
+				break;
+			case "yz":
+				pd.put("yz", "yz");
+				pd.put("n", "yz");
+				break;
+			case "dg":
+				pd.put("is_dongguan", "is_dongguan");
+				pd.put("n", "dg");
+				break;
+			case "gd":
+				pd.put("is_guangdong", "is_guangdong");
+				pd.put("n", "gd");
+				break;
+			default:
+				break;
+			}
+		}
+		if(!StringUtils.isEmpty(keyboard))
+			pd.put("keyboard", keyboard);
+		if(!StringUtils.isEmpty(nowpage)){
+			page.setCurrentResult((Integer.parseInt(nowpage)-1)*page.getShowCount());
+		}
+		
+		page.setPd(pd);
+		List<PageData> contentList = appContentService.listContents(page);
+		
+		String restHtml = createNewList(contentList,pd);
+		return restHtml;
+	}
+	
+	
+	private String createNewList(List<PageData> pagelist,PageData pg){
+		StringBuffer sb = new StringBuffer();
+		for(PageData pagedata : pagelist){
+			sb.append("<li class=\"item\"><span id=\"ad_extra\" style=\"display:none;\"></span>")
+			.append("<div class=\"y-box item-inner\">")
+			.append("<div class=\"y-left lbox\" ga_event=\"article_img_click\">")
+			.append("<div class=\"y-left lbox\" ga_event=\"article_img_click\">")
+			.append("<a class=\"img-wrap\" target=\"_blank\" href=\"").append(pagedata.get("link")).append("\">")
+			.append("<img alt=\"\" src=\"").append(pg.get("url")).append("static/images/jr.jpg\">")
+			.append("</a> </div> ")
+			.append("<div class=\"rbox \">").append("<div class=\"rbox-inner\">").append("<div class=\"title-box\" ga_event=\"article_title_click\">")
+			.append("<a class=\"link title\" target=\"_blank\" href=\" ").append(pagedata.get("link")).append("\">").append(pagedata.get("title")).append("</a>")
+			.append("</div> <div class=\"y-box summary\">").append(pagedata.get("summary")).append("</div>")
+			.append("<div class=\"y-box footer\">").append("<div class=\"y-left\">").append("<span class=\"lbtn\">&nbsp;").append(pagedata.get("source"))
+			.append("</span> <span>&nbsp;<fmt:formatDate value=\"").append(pagedata.get("pubtime")).append("\" type=\"date\"/></span>")
+			.append("</div> <div class=\"y-right\"> </div> </div> </div> </div> </div> </li>" )
+			;
+		}
+		
+		return sb.toString();
 	}
 
 }

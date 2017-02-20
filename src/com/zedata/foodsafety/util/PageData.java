@@ -17,6 +17,8 @@ public class PageData extends HashMap implements Map{
 	
 	public PageData(HttpServletRequest request){
 		this.request = request;
+		String path = request.getContextPath();
+		String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 		Map properties = request.getParameterMap();
 		Map returnMap = new HashMap(); 
 		Iterator entries = properties.entrySet().iterator(); 
@@ -40,6 +42,7 @@ public class PageData extends HashMap implements Map{
 			}
 			returnMap.put(name, value); 
 		}
+		returnMap.put("url", basePath);
 		map = returnMap;
 	}
 	

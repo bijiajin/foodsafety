@@ -28,6 +28,10 @@ public class AppContentService {
 		return (List<PageData>)dao.findForList("ContentMapper.contentlistPage", pd);
 	}
 	
+	public List<PageData> listContents(Page pd) throws Exception{
+		return (List<PageData>)dao.findForList("ContentMapper.listContents", pd);
+	}
+	
 	public PageData findByID(PageData pd) throws Exception{
 		return (PageData)dao.findForObject("ContentMapper.findByID", pd);
 	}
