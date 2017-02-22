@@ -79,7 +79,33 @@
 		 AND DATE_SUB(CURDATE(), INTERVAL 7 DAY) &lt;= date(pubtime)
 		</if>
 		GROUP BY pubtime DESC
-		limit #{currentResult},#{showCount}
+		limit #{pd.currentResult},#{pd.showCount}
+	</select>
+	
+	<select id="contentslistPage" parameterType="Page" resultType="pd">
+		SELECT infoid,title,content,summary,source,link,author,inerttime,pubtime FROM food_pagetable WHERE state = 1
+		<if test="pd.keywords != null and pd.keywords != ''">
+		AND (
+			 keywords LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+			 or title LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+			 or content LIKE CONCAT(CONCAT('%', #{pd.keywords}),'%')
+		)
+		</if>
+		<if test="pd.is_dongguan != null and pd.is_dongguan !=''">
+		 AND is_dongguan = 1
+		</if>
+		<if test="pd.is_guangdong != null and pd.is_guangdong !=''">
+		 AND is_guangdong = 1
+		</if>
+		<!-- 今日关注 -->
+		<if test="pd.jr != null and pd.jr !=''">
+		 AND to_days(pubtime) = to_days(now())
+		</if>
+		<!-- 一周新闻 -->
+		<if test="pd.yz != null and pd.yz !=''">
+		 AND DATE_SUB(CURDATE(), INTERVAL 7 DAY) &lt;= date(pubtime)
+		</if>
+		GROUP BY pubtime DESC
 	</select>
 	
 	

@@ -166,8 +166,8 @@ public class AppController extends BaseController{
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
-		
-		String newsType = pd.getString("n");
+		String keyboard = pd.getString("keywords");
+		String newsType = pd.getString("cloumName");
 		if(!StringUtils.isEmpty(newsType)){
 			switch (newsType) {
 			case "jr":
@@ -195,31 +195,17 @@ public class AppController extends BaseController{
 			}
 		}
 		
-//		String colunm = pd.getString("clon_name");
-//		if(!StringUtils.isEmpty(colunm)){
-//			switch (colunm) {
-//			case "今日关注":
-//				pd.put("jr", "jr");
-//				break;
-//			case "一周要闻":
-//				pd.put("yz", "yz");
-//				break;
-//			case "东莞信息":
-//				pd.put("is_dongguan", "is_dongguan");
-//				break;
-//			case "广东信息":
-//				pd.put("is_guangdong", "is_guangdong");
-//				break;
-//			default:
-//				break;
-//			}
-//		}
+		if(!StringUtils.isEmpty(keyboard))
+			pd.put("keyboard", keyboard);
+		
+
 		page.setPd(pd);
-		List<PageData> contentList = appContentService.listPdPageContent(page);
+		List<PageData> contentList = appContentService.listPdPageContents(page);
 		mv.addObject("contentList", contentList);
 		
 		
 		mv.addObject("pd", pd);
+		mv.addObject("page", page);
 		mv.setViewName("newpage/newsline/"+gotoHtml);
 		return mv;
 //		return "system/admin/default";
@@ -244,8 +230,8 @@ public class AppController extends BaseController{
 		PageData pd = new PageData();
 		pd = this.getPageData();
 		String nowpage = pd.getString("page");
-		String newsType = pd.getString("n");
-		String keyboard = pd.getString("keyboard");
+		String newsType = pd.getString("cloumName");
+		String keyboard = pd.getString("keywords");
 		if(!StringUtils.isEmpty(newsType)){
 			switch (newsType) {
 			case "jr":
@@ -273,9 +259,11 @@ public class AppController extends BaseController{
 		if(!StringUtils.isEmpty(nowpage)){
 			page.setCurrentResult((Integer.parseInt(nowpage)-1)*page.getShowCount());
 		}
-		
+		pd.put("currentResult", page.getCurrentResult());
+		pd.put("showCount", page.getShowCount());
 		page.setPd(pd);
-		List<PageData> contentList = appContentService.listContents(page);
+		
+		List<PageData> contentList = appContentService.findContentsList(page);
 		
 		String restHtml = createNewList(contentList,pd);
 		return restHtml;

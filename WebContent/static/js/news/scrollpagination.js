@@ -21,6 +21,8 @@ var loading = false; (function($) {
     $.fn.scrollPagination.loadContent = function(obj, opts) {
         if (loading) return;
         var target = opts.scrollTarget;
+        var keywords = $("#keywords").val();
+        var n = $("#cloumName").val();
         var mayLoadContent = $(target).scrollTop() + opts.heightOffset >= $(document).height() - $(target).height();
         if (mayLoadContent) {
             if (opts.beforeLoad != null) {
@@ -31,10 +33,10 @@ var loading = false; (function($) {
             $.ajax({
                 type: 'GET',
                 async: false,
-                url: opts.contentPage + curpage,
+                url: opts.contentPage + curpage+"&keywords="+keywords+"&cloumName="+n,
                 data: opts.contentData,
                 success: function(data) {
-                	console.log(data);
+//                	console.log(data);
                     loading = false;
                     $(obj).append(data);
                     var objectsRendered = $(obj).children('[rel!=loaded]');
@@ -42,7 +44,7 @@ var loading = false; (function($) {
                         opts.afterLoad(objectsRendered)
                     }
                 },
-                dataType: 'string'
+                dataType: 'html'
             })
         }
     };
@@ -68,6 +70,7 @@ var loading = false; (function($) {
     }
 })(jQuery);
 $(function() {
+	
     $('.listNewsTimeLy').scrollPagination({
         'contentPage': geturl,
         'contentData': {},
