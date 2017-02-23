@@ -167,7 +167,10 @@ public class AppController extends BaseController{
 		PageData pd = new PageData();
 		pd = this.getPageData();
 		String keyboard = pd.getString("keywords");
-		String newsType = pd.getString("cloumName");
+		String newsType = pd.getString("n");
+		String cloumName = pd.getString("cloumName");
+		if(StringUtils.isEmpty(newsType))
+			newsType = cloumName;
 		if(!StringUtils.isEmpty(newsType)){
 			switch (newsType) {
 			case "jr":
@@ -259,7 +262,7 @@ public class AppController extends BaseController{
 		if(!StringUtils.isEmpty(nowpage)){
 			page.setCurrentResult((Integer.parseInt(nowpage)-1)*page.getShowCount());
 		}
-		pd.put("currentResult", page.getCurrentResult());
+		pd.put("currentResult", page.getCResult());
 		pd.put("showCount", page.getShowCount());
 		page.setPd(pd);
 		

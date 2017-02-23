@@ -31,7 +31,7 @@
                 <div class="y-box middlebar-inner" >
                     <div class="y-left logo-box">
                         <a class="logo-link" href="new_def.do" ga_event="go_home">
-                            <img class="logo" id="home-logo" src="<%=basePath%>static/images/logo.png">
+                            <img class="logo" id="home-logo" src="<%=basePath%>static/images/foodlogo.png">
                         </a>
                     </div>
                     <div riot-tag="searchbox">

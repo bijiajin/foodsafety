@@ -12,40 +12,36 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="<%=basePath%>static/css/news/layout.css">
 <link rel="stylesheet" href="<%=basePath%>static/css/news/home.css">
-<script type="text/javascript" src="<%=basePath%>static/js/news/jquery-2.0.3.min.js"></script>
-<title>一周要闻</title>
-<script>
-        var curpage = 1;
-        var totalpage = 375;
-        var geturl = '/e/extend/list/?classid=47,33,32,31,30,29,28,27,26,25,34,35,36,46,45,44,43,42,41,39,38,37,24,23,10,9,8,7,6,5,4,3,2,11,12,13,22,21,20,19,18,17,16,15,14,1,&orderby=newstime&page=';
-    </script>
-    <script type="text/javascript" charset="utf-8" src="<%=basePath%>static/js/scrollpagination.js"></script>
+<script type="text/javascript" src="<%=basePath%>static/js/news/jquery.min.js"></script>
+<script type="text/javascript" src="<%=basePath%>static/js/news/ajax.js"></script>
+<title>今日关注</title>
+
 </head>
 <body style="min-width: 1220px; overflow-x: hidden;">
 	<div class="y-wrap">
 
     <div class="y-header">
-        <div class="header">
+        <div class="header ">
             <div riot-tag="topbar" style="height: 24px; background: #ed4040;">
                 <div class="y-box topbar">
 
                 </div>
             </div>
             <div class="middlebar">
-                <div class="y-box middlebar-inner">
+                <div class="y-box middlebar-inner" >
                     <div class="y-left logo-box">
                         <a class="logo-link" href="new_def.do" ga_event="go_home">
-                            <img class="logo" id="home-logo" src="<%=basePath%>static/images/logo.png">
+                            <img class="logo" id="home-logo" src="<%=basePath%>static/images/foodlogo.png">
                         </a>
                     </div>
                     <div riot-tag="searchbox">
                         <div name="searchBox" class="y-left search-box">
-                            <form action="new_def.do" method="post" data-node="searchForm"
-                                  target="_blank">
+                            <form action="new_def.do" method="post" data-node="searchForm" >
                                 <div class="y-box input-group">
-                                    <input class="y-left input-text" name="keyboard" autocomplete="off" ga_event="mh_search" type="text" placeholder="请输入关键字" value="">
+                                    <input class="y-left input-text" id="keywords" name="keywords" autocomplete="off" ga_event="mh_search" type="text" placeholder="请输入关键字" value="${pd.keyboard }">
                                     <div class="y-right btn-submit">
-                                        <input type="hidden" name="cloumName" value="${pd.n }">
+                                        <input type="hidden" id="cloumName" name="cloumName" value="${pd.n }">
+                                        <input type="hidden" id="pagesize" name="pagesize" value="${page.totalPage }">
                                         <button type="submit" href="javascript:;">
                                             <i class="y-icon icon-search" ga_event="mh_search"></i>
                                         </button>
@@ -57,14 +53,13 @@
 
                 </div>
             </div>
-            <div riot-tag="login">
-            </div>
+            
             <div id="toast"></div>
         </div>
         <div class="y-box container">
             <div class="y-left index-channel">
                 <div riot-tag="channel">
-                    <div ga_event="left-channel-click" class="channel">
+                    <div ga_event="left-channel-click" id="left-channel-click" class="channel ">
                         <ul>
                             <li class="channel-item active"><a href="new_def.do?n=jr" > <i
                                     class="y-icon icon-recommandchannel"></i><span>今日关注</span> </a></li>
@@ -99,8 +94,7 @@
                                     <li class="item"><span id="ad_extra" style="display:none;"></span>
                                         <div class="y-box item-inner">
                                             <div class="y-left lbox" ga_event="article_img_click">
-                                                <a class="img-wrap" target="_blank"
-                                                   href="${content.link }"> 
+                                                <a class="img-wrap" target="_blank" href="${content.link }"> 
                                                    <img alt="" src="<%=basePath%>static/images/jr.jpg">
                                                 </a>
                                             </div>
@@ -154,52 +148,58 @@
         <div class="action-feedback">
             <div riot-tag="feedback" class="feedback">
                 <ul class="">
-                    <li class="tool-item go-top"><a href="javascript:;"> <i class="y-icon icon-backtotopfeed"></i> </a>
+                    <li class="tool-item go-top"><a href="javascript:window.scrollTo( 0, 0 );"> <i class="y-icon icon-backtotopfeed"></i> </a>
                     </li>
                 </ul>
             </div>
         </div>
         <div riot-tag="verification"></div>
 
-        <!--
+        <!-- 
+        <script src="<%=basePath%>static/js/news/home.js"></script>
+        -->
+        
          <script>
-             riot.mount('topbar', {
-                 home: true
-             });
-             riot.mount('searchbox');
-             riot.mount('userbox', {
-                 userInfo: userInfo
-             });
-             riot.mount('login');
+         $(function(){        
+        	 $(window).scroll(function(){            
+        		 $offset = $('#subchannel').offset();//不能用自身的div，不然滚动起来会很卡     
+        		 if($(window).scrollTop()>78){ 
+//         			 $('#left-channel-click').css({
+//         				 'position':'fixed',                
+//         				 'top':'0px',                
+// //         				 'left':$offset.left+'px',                
+//         				 'z-index':'999'                
+//         				 });
+						$("#left-channel-click").addClass("channel-fixed");
+						
+        			 }else{
+//         				 $('#left-channel-click').removeAttr('style'); 
+        				 $("#left-channel-click").removeClass("channel-fixed");
+        				 }        
+        		 });  
+        	 
+        	 
+        	 })
+        	 
+         //查询
+         function search(){
+        	 
+         }
+         
+         function createNewList(data){
+        	 
+         }
+        			
          </script>
+         
          <script>
-             riot.mount('feedBox', {
-                 type: channelType,
-                 category: '__all__',
-                 feedUrl: use_feed_service,
-                 abType: ab_list_style
-             });
-         </script>
-         <script>
-             riot.mount('channel', {
-                 tag: '__all__' == '__all__' ? '/' : '/' + '__all__' + '/'
-             });
-             riot.mount('feedback', {});
-             riot.mount('verification');
-             subchannels && subchannels.length > 0 && riot.mount('subchannel', {
-                 subchannels: subchannels,
-                 suspension: true
-             });
-         </script>
-         <script>
-             riot.mount('adTab');
-             riot.mount('hotNews', {hotNews: hotNews});
-             riot.mount('hotJoke');
-             riot.mount('hotVideo');
-             riot.mount('hotPicture');
-         </script>
+        var curpage = 1;
+        var totalpage = $("#pagesize").val();
+        var geturl = '<%=basePath%>App/newList.do?&page=';
+    </script>
+	<script type="text/javascript" charset="utf-8" src="<%=basePath%>static/js/news/scrollpagination.js"></script>
 
- -->
+
 
     </div>
 </div>

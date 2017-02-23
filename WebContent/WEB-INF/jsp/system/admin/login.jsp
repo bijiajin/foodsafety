@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,8 +30,8 @@
 				id="loginForm">
 				<div class="control-group normal_text">
 					<h3>
-<!-- 						<img src="static/login/logo.png" alt="Logo" /> -->
-						食品安全
+						<img src="<%=basePath%>static/images/foodlogo.png" alt="Logo" />
+<!-- 						食品安全 -->
 					</h3>
 				</div>
 				<div class="control-group">

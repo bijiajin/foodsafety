@@ -230,4 +230,14 @@ public class Page {
 		this.pd = pd;
 	}
 	
+	/**
+	 * 获取分页索引起始值
+	 * 使用与自己计算后取值。
+	 * @return
+	 */
+	public int getCResult(){
+		return this.currentResult;
+	}
+	
+	
 }
