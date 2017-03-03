@@ -24,7 +24,21 @@
         <div class="header ">
             <div riot-tag="topbar" style="height: 24px; background: #ed4040;">
                 <div class="y-box topbar">
-
+					<ul class="y-right">
+                        <li class="tb-item more">
+	                        <a class="tb-link" href="">
+	                        	<img alt="foodsafety" src="<%=basePath%>static/avatars/user.jpg">
+							</a>
+                            <div class="layer">
+                                <ul>
+                                    
+                                    <li><a href="<%=basePath%>logout" class="layer-item"
+                                           rel="nofollow"><i
+                                    class="y-icon icon-location"></i>退出</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="middlebar">

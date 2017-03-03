@@ -232,7 +232,8 @@
     z-index: 200;
     font-size: 14px;
     right: 0;
-    width: 116px
+    width: 116px;
+    margin-top: -18px
 }
 
 .topbar .more .layer .layer-item {
@@ -1600,7 +1601,7 @@
     height: 10%;
     height: 10%;
     line-height: 18px;
-    margin-top: 10px
+    margin-top: 10px;
 }
 
 .feedBox .commonFeed .lbtn {
