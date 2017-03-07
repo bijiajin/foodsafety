@@ -193,6 +193,9 @@ public class AppController extends BaseController{
 				pd.put("n", "gd");
 				gotoHtml = "guangdong_list";
 				break;
+			case "gy":
+				gotoHtml = "about";
+				break;
 			default:
 				break;
 			}
@@ -201,15 +204,68 @@ public class AppController extends BaseController{
 		if(!StringUtils.isEmpty(keyboard))
 			pd.put("keyboard", keyboard);
 		
-
+		mv.setViewName("newpage/newsline/"+gotoHtml);
 		page.setPd(pd);
-		List<PageData> contentList = appContentService.listPdPageContents(page);
-		mv.addObject("contentList", contentList);
 		
+		//
+		try {
+			pd.put("SYSNAME", Tools.readTxtFile(Const.SYSNAME)); //读取系统名称
+			//shiro管理的session
+			Subject currentUser = SecurityUtils.getSubject();  
+			Session session = currentUser.getSession();
+			
+			//从session中获取登录用户
+			User user = (User)session.getAttribute(Const.SESSION_USER);
+			if (user != null) {
+				User userr = (User)session.getAttribute(Const.SESSION_USERROL);
+				if(null == userr){
+					user = userService.getUserAndRoleById(user.getUSER_ID());
+					session.setAttribute(Const.SESSION_USERROL, user);
+				}else{
+					user = userr;
+				}
+				Role role = user.getRole();
+				
+				String columnRights = role!=null ? role.getRH_COLUMNS() : "";
+				//避免每次拦截用户操作时查询数据库，以下将用户所属角色权限、用户权限限都存入session
+				session.setAttribute(Const.SESSION_ROLE_RH_COLUMN, columnRights); 		//将角色栏目权限存入session
+				
+				//获取栏目
+				List<Column> columnList = new ArrayList<Column>();
+				if(null == session.getAttribute(Const.SESSION_allColumnList)){
+					columnList = columnService.listAllColumn();
+					if(Tools.notEmpty(columnRights)){
+						for(Column colu : columnList){
+							colu.setChecked(RightsHelper.testRights(columnRights, colu.getClon_id()));
+							
+						}
+					}
+					
+					session.setAttribute(Const.SESSION_allColumnList, columnList);			//菜单权限放入session中
+				}else{
+					columnList = (List<Column>)session.getAttribute(Const.SESSION_allColumnList);
+				}
+				mv.addObject("columnList", columnList);
+				mv.addObject("user", user);
+				//获取新闻列表
+				List<PageData> contentList = appContentService.listPdPageContents(page);
+				mv.addObject("contentList", contentList);
+				
+			}else{
+				mv.setViewName("system/admin/login");//session失效后跳转登录页面
+			}
+			
+			
+		} catch (Exception e) {
+			mv.setViewName("system/admin/login");
+			logger.error(e.getMessage(), e);
+		}
+		
+		//
 		
 		mv.addObject("pd", pd);
 		mv.addObject("page", page);
-		mv.setViewName("newpage/newsline/"+gotoHtml);
+		
 		return mv;
 //		return "system/admin/default";
 	}

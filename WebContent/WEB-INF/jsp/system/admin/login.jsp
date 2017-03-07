@@ -30,7 +30,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				id="loginForm">
 				<div class="control-group normal_text">
 					<h3>
-						<img src="<%=basePath%>static/images/foodlogo.png" alt="Logo" />
+<%-- 						<img src="<%=basePath%>static/images/foodlogo.png" alt="Logo" /> --%>
+							<img src="static/login/logo_food.png" alt="Logo" />				
 <!-- 						食品安全 -->
 					</h3>
 				</div>

@@ -20,6 +20,8 @@ public class Column implements Serializable{
 	private String clon_name;//栏目名称
 	private Integer clon_state;//栏目状态(1:使用，2:禁用)
 	private boolean checked = false;
+	private String alias;//别名
+	private String icon;//图标
 	public Integer getClon_id() {
 		return clon_id;
 	}
@@ -44,6 +46,20 @@ public class Column implements Serializable{
 	public void setChecked(boolean checked) {
 		this.checked = checked;
 	}
+	public String getAlias() {
+		return alias;
+	}
+	public void setAlias(String alias) {
+		this.alias = alias;
+	}
+	public String getIcon() {
+		return icon;
+	}
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
+	
+	
 	
 	
 

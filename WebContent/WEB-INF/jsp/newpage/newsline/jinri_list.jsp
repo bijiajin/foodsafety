@@ -32,6 +32,9 @@
                             <div class="layer">
                                 <ul>
                                     
+                                    <li><a onclick="userInfo()" class="layer-item"
+                                           rel="nofollow"><i
+                                    class="y-icon icon-location"></i>个人信息</a></li>
                                     <li><a href="<%=basePath%>logout" class="layer-item"
                                            rel="nofollow"><i
                                     class="y-icon icon-location"></i>退出</a></li>
@@ -75,17 +78,22 @@
                 <div riot-tag="channel">
                     <div ga_event="left-channel-click" id="left-channel-click" class="channel ">
                         <ul>
-                            <li class="channel-item active"><a href="new_def.do?n=jr" > <i
-                                    class="y-icon icon-recommandchannel"></i><span>今日关注</span> </a></li>
-                            <li class="channel-item "><a href="new_def.do?n=yz" > <i
-                                    class="y-icon icon-hotchannel"></i><span>一周要闻</span> </a></li>
-                            <li class="channel-item "><a href="new_def.do?n=dg" > <i
-                                    class="y-icon icon-videochannel"></i><span>东莞信息</span> </a></li>
-                            <li class="channel-item "><a href="new_def.do?n=gd" >
-                                <i class="y-icon icon-imagechannel"></i><span>广东信息</span> </a></li>
-                            <li class="channel-item "><a href="new_def.do?n=js" > <i
-                                    class="y-icon icon-militarychannel"></i><span>检索信息</span> </a></li>
-
+<!--                             <li class="channel-item active"><a href="new_def.do?n=jr" > <i -->
+<!--                                     class="y-icon icon-recommandchannel"></i><span>今日关注</span> </a></li> -->
+<!--                             <li class="channel-item "><a href="new_def.do?n=yz" > <i -->
+<!--                                     class="y-icon icon-hotchannel"></i><span>一周要闻</span> </a></li> -->
+<!--                             <li class="channel-item "><a href="new_def.do?n=dg" > <i -->
+<!--                                     class="y-icon icon-videochannel"></i><span>东莞信息</span> </a></li> -->
+<!--                             <li class="channel-item "><a href="new_def.do?n=gd" > -->
+<!--                                 <i class="y-icon icon-imagechannel"></i><span>广东信息</span> </a></li> -->
+<!--                             <li class="channel-item "><a href="new_def.do?n=js" > <i -->
+<!--                                     class="y-icon icon-militarychannel"></i><span>检索信息</span> </a></li> -->
+								<c:forEach items="${columnList}" var="column" varStatus="cl">
+									<c:if test="${column.checked}">
+									 <li class="channel-item active"><a href="new_def.do?n=${column.alias }" > <i
+                                    class="y-icon ${column.icon}"></i><span>${column.clon_name }</span> </a></li>
+                                    </c:if>
+								</c:forEach>
                             
                         </ul>
                     </div>
@@ -107,14 +115,17 @@
                                 	<c:forEach items="${contentList}" var="content" varStatus="vs">
                                     <li class="item"><span id="ad_extra" style="display:none;"></span>
                                         <div class="y-box item-inner">
+                                        	<!-- 
                                             <div class="y-left lbox" ga_event="article_img_click">
                                                 <a class="img-wrap" target="_blank" href="${content.link }"> 
-                                                   <img alt="" src="<%=basePath%>static/images/jr.jpg">
+                                                   <img alt="" src="<%=basePath%>static/images/point.png">
                                                 </a>
                                             </div>
+                                             -->
                                             <div class="rbox ">
                                                 <div class="rbox-inner">
                                                     <div class="title-box" ga_event="article_title_click">
+                                                    <img alt="" src="<%=basePath%>static/images/point.png">
                                                         <a class="link title" target="_blank"
                                                            href="${content.link }">
                                                             ${content.title} </a>
@@ -169,11 +180,13 @@
         </div>
         <div riot-tag="verification"></div>
 
-        <!-- 
-        <script src="<%=basePath%>static/js/news/home.js"></script>
-        -->
+        
         
          <script>
+         var curpage = 1;
+         var totalpage = $("#pagesize").val();
+         var geturl = '<%=basePath%>App/newList.do?&page=';
+         
          $(function(){        
         	 $(window).scroll(function(){            
         		 $offset = $('#subchannel').offset();//不能用自身的div，不然滚动起来会很卡     
@@ -195,24 +208,36 @@
         	 
         	 })
         	 
-         //查询
-         function search(){
         	 
-         }
-         
-         function createNewList(data){
         	 
-         }
+        
         			
          </script>
          
-         <script>
-        var curpage = 1;
-        var totalpage = $("#pagesize").val();
-        var geturl = '<%=basePath%>App/newList.do?&page=';
-    </script>
+    
 	<script type="text/javascript" charset="utf-8" src="<%=basePath%>static/js/news/scrollpagination.js"></script>
+	<!--引入弹窗组件start-->
+	<script type="text/javascript" src="<%=basePath%>plugins/attention/zDialog/zDrag.js"></script>
+	<script type="text/javascript" src="<%=basePath%>plugins/attention/zDialog/zDialog.js"></script>
+	<script type="text/javascript">
+	function userInfo(){
+//    	 top.jzts();
+   	 var diag = new Dialog();
 
+   		diag.Width = 300;
+
+   		diag.Height = 100;
+
+   		diag.Title = "内容页为html代码的窗口";
+
+   		diag.InnerHtml='<div style="text-align:center;color:red;font-size:14px;">直接输出html，使用 <b>InnerHtml</b> 属性。</div>'
+
+   		diag.OKEvent = function(){diag.close();};//点击确定后调用的方法
+
+   		diag.show();
+   	 
+    }
+	</script>
 
 
     </div>

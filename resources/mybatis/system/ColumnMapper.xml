@@ -7,6 +7,9 @@
 		<id column="id" property="clon_id"/>
 		<result column="name" property="clon_name"/>
 		<result column="state" property="clon_state"/>
+		<result column="alias" property="alias"/>
+		<result column="icon" property="icon"/>
+		
 	</resultMap>
 	
 	<!-- 分页查询所有栏目。用于栏目列表 -->
@@ -52,6 +55,6 @@
 	
 	<!-- 获取所有可用的栏目 -->
 	<select id="listAllColumn" resultMap="columnResultMap">
-		SELECT id as clon_id,`name` as clon_name,state as clon_state FROM food_column where state = 1
+		SELECT id as clon_id,`name` as clon_name,state as clon_state,alias as alias,icon as icon FROM food_column where state = 1
 	</select>
 </mapper>

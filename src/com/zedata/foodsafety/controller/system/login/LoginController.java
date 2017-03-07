@@ -322,6 +322,8 @@ public class LoginController extends BaseController {
 		session.removeAttribute(Const.SESSION_USERNAME);
 		session.removeAttribute(Const.SESSION_USERROL);
 		session.removeAttribute("changeMenu");
+		session.removeAttribute(Const.SESSION_allColumnList);
+		session.removeAttribute(Const.SESSION_ROLE_RH_COLUMN);
 		
 		//shiro销毁登录
 		Subject subject = SecurityUtils.getSubject(); 

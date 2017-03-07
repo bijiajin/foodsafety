@@ -75,6 +75,7 @@
                 <div riot-tag="channel">
                     <div ga_event="left-channel-click" id="left-channel-click" class="channel ">
                         <ul>
+                        <!-- 
                             <li class="channel-item active"><a href="new_def.do?n=jr" > <i
                                     class="y-icon icon-recommandchannel"></i><span>今日关注</span> </a></li>
                             <li class="channel-item "><a href="new_def.do?n=yz" > <i
@@ -85,6 +86,14 @@
                                 <i class="y-icon icon-imagechannel"></i><span>广东信息</span> </a></li>
                             <li class="channel-item "><a href="new_def.do?n=js" > <i
                                     class="y-icon icon-militarychannel"></i><span>检索信息</span> </a></li>
+                         -->
+                         <c:forEach items="${columnList}" var="column" varStatus="cl">
+									<c:if test="${column.checked}">
+									 <li class="channel-item active"><a href="new_def.do?n=${column.alias }" > <i
+                                    class="y-icon icon-recommandchannel"></i><span>${column.clon_name }</span> </a></li>
+                                    </c:if>
+								</c:forEach>
+                       
 
                             
                         </ul>
