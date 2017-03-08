@@ -127,6 +127,47 @@ public class ColumnController extends BaseController{
 		return AppUtil.returnObject(pd, map);
 	}
 	
+	/**
+	 * 请求编辑菜单图标页面
+	 * @param 
+	 * @return
+	 */
+	@RequestMapping(value="/toEditicon")
+	public ModelAndView toEditicon(String ColumnID)throws Exception{
+		ModelAndView mv = this.getModelAndView();
+		PageData pd = new PageData();
+		try{
+			pd = this.getPageData();
+			pd.put("ColumnID",ColumnID);
+			mv.addObject("pd", pd);
+			mv.setViewName("system/column/column_icon");
+		} catch(Exception e){
+			logger.error(e.toString(), e);
+		}
+		return mv;
+	}
+	
+	/**
+	 * 保存菜单图标 (顶部菜单)
+	 * @param 
+	 * @return
+	 */
+	@RequestMapping(value="/editicon")
+	public ModelAndView editicon()throws Exception{
+		ModelAndView mv = this.getModelAndView();
+		PageData pd = new PageData();
+		try{
+			pd = this.getPageData();
+//			pd = menuService.editicon(pd);
+			mv.addObject("msg","success");
+		} catch(Exception e){
+			logger.error(e.toString(), e);
+			mv.addObject("msg","failed");
+		}
+		mv.setViewName("save_result");
+		return mv;
+	}
+	
 	
 
 }

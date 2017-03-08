@@ -26,7 +26,7 @@
 		<script type="text/javascript" src="static/js/jquery.tips.js"></script>
 		
 <script type="text/javascript">
-	$(top.hangge());
+	
 	$(document).ready(function(){
 		if($("#user_id").val()!=""){
 			$("#loginname").attr("readonly","readonly");
@@ -337,20 +337,7 @@
 		<script src="static/js/ace.min.js"></script>
 		<script type="text/javascript" src="static/js/chosen.jquery.min.js"></script><!-- 下拉框 -->
 		
-		<script type="text/javascript">
 		
-		$(function() {
-			
-			//单选框
-			$(".chzn-select").chosen(); 
-			$(".chzn-select-deselect").chosen({allow_single_deselect:true}); 
-			
-			//日期框
-			$('.date-picker').datepicker();
-			
-		});
-		
-		</script>
 	
 </body>
 </html>

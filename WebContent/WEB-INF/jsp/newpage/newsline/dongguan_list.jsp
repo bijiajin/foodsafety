@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="<%=basePath%>static/css/news/layout.css">
 <link rel="stylesheet" href="<%=basePath%>static/css/news/home.css">
@@ -22,19 +23,29 @@
 
     <div class="y-header">
         <div class="header ">
-            <div riot-tag="topbar" style="height: 24px; background: #ed4040;">
+            <div riot-tag="topbar" style="height: 37px; background: #ed4040;">
                 <div class="y-box topbar">
 					<ul class="y-right">
                         <li class="tb-item more">
-	                        <a class="tb-link" href="">
+	                        <a class="tb-link" href="#">
 	                        	<img alt="foodsafety" src="<%=basePath%>static/avatars/user.jpg">
+	                        	<span style="text-align:center;">${user.NAME}</span>
+	                        	
 							</a>
                             <div class="layer">
                                 <ul>
                                     
-                                    <li><a href="<%=basePath%>logout" class="layer-item"
-                                           rel="nofollow"><i
-                                    class="y-icon icon-location"></i>退出</a></li>
+                                    <li>
+                                    	<a onclick="userInfo('${user.USER_ID}')" class="layer-item" rel="nofollow">
+                                    		<i class="y-icon icon-location"></i>
+                                    		个人信息
+                                    	</a>
+                                    </li>
+                                    <li>
+                                    	<a href="<%=basePath%>logout" class="layer-item" rel="nofollow">
+                                    		<i class="y-icon icon-location"></i>退出
+                                    	</a>
+                                    </li>
                                 </ul>
                             </div>
                         </li>
@@ -89,7 +100,7 @@
                                     -->
                                     <c:forEach items="${columnList}" var="column" varStatus="cl">
 									<c:if test="${column.checked}">
-									 <li class="channel-item active"><a href="new_def.do?n=${column.alias }" > <i
+									 <li class="channel-item active"><a href="App/new_def.do?n=${column.alias }" > <i
                                     class="y-icon icon-recommandchannel"></i><span>${column.clon_name }</span> </a></li>
                                     </c:if>
 								</c:forEach>
@@ -220,7 +231,26 @@
         var geturl = '<%=basePath%>App/newList.do?&page=';
     </script>
 	<script type="text/javascript" charset="utf-8" src="<%=basePath%>static/js/news/scrollpagination.js"></script>
+	<!--引入弹窗组件start-->
+	<script type="text/javascript" src="<%=basePath%>plugins/attention/zDialog/zDrag.js"></script>
+	<script type="text/javascript" src="<%=basePath%>plugins/attention/zDialog/zDialog_main.js"></script>
+	<script type="text/javascript">
+	function userInfo(userID){
+   	 var diag = new Dialog();
 
+//    	var diag = new top.Dialog();
+	 diag.Drag=true;
+	 diag.Title ="个人资料";
+	 diag.URL = '<%=basePath%>user/goAppEditU.do?USER_ID='+userID+'&fx=head';
+	 diag.Width = 230;
+	 diag.Height = 400;
+	 diag.CancelEvent = function(){ //关闭事件
+		diag.close();
+	 };
+	 diag.show();
+   	 
+    }
+	</script>
 
 
     </div>

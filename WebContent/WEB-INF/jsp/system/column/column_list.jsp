@@ -98,6 +98,7 @@
 										<c:if test="${QX.del == 1 }">
 											<a class='btn btn-mini btn-danger' title="删除" onclick="delColn('${column.clon_id }','${column.clon_name }');"><i class='icon-trash'></i></a>
 										</c:if>
+										<a class='btn btn-mini btn-purple' title="图标" onclick="editTb('${column.clon_id }')" ><i class='icon-picture'></i></a>
 										
 									</div>
 								</td>
@@ -327,9 +328,32 @@
 			
 		});
 		
+		//编辑栏目图标
+		function editTb(ColumnID){
+			 top.jzts();
+		   	 var diag = new top.Dialog();
+			 diag.Drag=true;
+			 diag.Title ="编辑图标";
+			 diag.URL = '<%=basePath%>Column/toEditicon.do?ColumnID='+ColumnID;
+			 diag.Width = 630;
+			 diag.Height = 200;
+			 diag.CancelEvent = function(){ //关闭事件
+				if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
+					top.jzts(); 
+					setTimeout("location.reload()",100);
+				}
+				diag.close();
+			 };
+			 diag.show();
+		}
+		
+		
+		
 		
 		
 		</script>
+		
+		
 		
 	</body>
 </html>

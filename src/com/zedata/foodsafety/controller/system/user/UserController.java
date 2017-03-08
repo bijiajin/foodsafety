@@ -168,7 +168,27 @@ public class UserController extends BaseController {
 		if(pd.getString("PASSWORD") != null && !"".equals(pd.getString("PASSWORD"))){
 			pd.put("PASSWORD", new SimpleHash("SHA-1", pd.getString("USERNAME"), pd.getString("PASSWORD")).toString());
 		}
-		if(Jurisdiction.buttonJurisdiction(menuUrl, "edit")){userService.editU(pd);}
+		if(Jurisdiction.buttonJurisdiction(menuUrl, "edit")){
+			userService.editU(pd);
+		}
+		mv.addObject("msg","success");
+		mv.setViewName("save_result");
+		return mv;
+	}
+	
+	
+	/**
+	 * 修改用户
+	 */
+	@RequestMapping(value="/AppeditU")
+	public ModelAndView AppeditU() throws Exception{
+		ModelAndView mv = this.getModelAndView();
+		PageData pd = new PageData();
+		pd = this.getPageData();
+		if(pd.getString("PASSWORD") != null && !"".equals(pd.getString("PASSWORD"))){
+			pd.put("PASSWORD", new SimpleHash("SHA-1", pd.getString("USERNAME"), pd.getString("PASSWORD")).toString());
+		}
+			userService.editU(pd);
 		mv.addObject("msg","success");
 		mv.setViewName("save_result");
 		return mv;
@@ -198,6 +218,36 @@ public class UserController extends BaseController {
 		pd = userService.findByUiId(pd);							//根据ID读取
 		mv.setViewName("system/user/user_edit");
 		mv.addObject("msg", "editU");
+		mv.addObject("pd", pd);
+		mv.addObject("roleList", roleList);
+		
+		return mv;
+	}
+	
+	/**
+	 * 去修改用户页面
+	 */
+	@RequestMapping(value="/goAppEditU")
+	public ModelAndView goAppEditU() throws Exception{
+		ModelAndView mv = this.getModelAndView();
+		PageData pd = new PageData();
+		pd = this.getPageData();
+		
+		//顶部修改个人资料
+		String fx = pd.getString("fx");
+		
+		//System.out.println(fx);
+		
+		if("head".equals(fx)){
+			mv.addObject("fx", "head");
+		}else{
+			mv.addObject("fx", "user");
+		}
+		
+		List<Role> roleList = roleService.listAllERRoles();			//列出所有二级角色
+		pd = userService.findByUiId(pd);							//根据ID读取
+		mv.setViewName("system/user/app_user_edit");
+		mv.addObject("msg", "AppeditU");
 		mv.addObject("pd", pd);
 		mv.addObject("roleList", roleList);
 		
