@@ -37,6 +37,18 @@
 			$("#columnName").focus();
 			return false;
 		}
+		if($("#alias").val()==""){
+			$("#alias").tips({
+				side:3,
+	            msg:'请输入栏目别名',
+	            bg:'#AE81FF',
+	            time:2
+	        });
+			$("#alias").focus();
+			return false;
+		}
+		
+		
 			$("#form1").submit();
 			$("#zhongxin").hide();
 			$("#zhongxin2").show();
@@ -52,6 +64,11 @@
 				<tr>
 					<td>
 						<input type="text" name="clon_name" id="columnName" placeholder="这里输入栏目名称" title="名称"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="text" name="alias" id="alias" placeholder="这里输入别名（如：jr）" title="别名"/>
 					</td>
 				</tr>
 				<tr>

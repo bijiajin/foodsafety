@@ -11,6 +11,9 @@
 	<base href="<%=basePath%>">
 	<!-- jsp文件头和头部 -->
 	<%@ include file="../admin/top.jsp"%> 
+	<!-- 引入App样式文件 -->
+		<link rel="stylesheet" href="<%=basePath%>static/css/news/layout.css">
+		<link rel="stylesheet" href="<%=basePath%>static/css/news/home.css">
 	</head> 
 <body>
 		
@@ -60,6 +63,8 @@
 						<th>序号</th>
 						<th>编号</th>
 						<th>名称</th>
+						<th>别名</th>
+						<th>图标</th>
 						<th>状态</th>
 						<th class="center">操作</th>
 					</tr>
@@ -83,6 +88,8 @@
 								<td class='center' style="width: 30px;">${vs.index+1}</td>
 								<td>${column.clon_id }</td>
 								<td><a>${column.clon_name }</a></td>
+								<td><a>${column.alias }</a></td>
+								<td><span class="lbl">&nbsp;<i class="y-icon ${column.icon }"></i></span></td>
 								<td>
 									<c:if test="${column.clon_state == 2 }"><span class="label label-important arrowed-in">禁用</span></c:if>
 									<c:if test="${column.clon_state == 1 }"><span class="label label-success arrowed">启用</span></c:if>
@@ -191,7 +198,7 @@
 			 diag.Title ="新增";
 			 diag.URL = '<%=basePath%>Column/goAdd.do';
 			 diag.Width = 225;
-			 diag.Height = 160;
+			 diag.Height = 180;
 			 diag.CancelEvent = function(){ //关闭事件
 				 if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
 					 if('${page.currentPage}' == '0'){
@@ -214,7 +221,7 @@
 			 diag.Title ="资料";
 			 diag.URL = '<%=basePath%>Column/goEdit.do?clon_id='+coln_id;
 			 diag.Width = 225;
-			 diag.Height = 160;
+			 diag.Height = 180;
 			 diag.CancelEvent = function(){ //关闭事件
 				 if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
 					nextPage(${page.currentPage});
@@ -346,6 +353,8 @@
 			 };
 			 diag.show();
 		}
+		
+		
 		
 		
 		

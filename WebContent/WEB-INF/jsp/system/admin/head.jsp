@@ -151,12 +151,14 @@
 							<li><a onclick="editUserH();" style="cursor:pointer;"><i class="icon-user"></i> 修改资料</a></li>
 							<li id="systemset"><a onclick="editSys();" style="cursor:pointer;"><i class="icon-cog"></i> 系统设置</a></li>
 <!-- 							<li id="productCode"><a onclick="productCode();" style="cursor:pointer;"><i class="icon-cogs"></i> 代码生成</a></li> -->
+							<!-- 
 							<li id="productCode">
 								<a href="http://192.168.70.36:8080/#/login" target="_blank" style="cursor:pointer;">
 									<i class="icon-cogs"></i> 
 									packOne
 								</a>
 							</li>
+							 -->
 							<li class="divider"></li>
 							<li><a href="logout"><i class="icon-off"></i> 退出</a></li>
 						</ul>

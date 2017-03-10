@@ -55,5 +55,15 @@ public class ColumnService {
 	public List<Column> listAllColumn() throws Exception{
 		return (List<Column>) dao.findForList("ColumnMapper.listAllColumn", null);
 	}
+	
+	/**
+	 * 修改栏目icon
+	 * @param pd
+	 * @return
+	 * @throws Exception
+	 */
+	public PageData editicon(PageData pd) throws Exception {
+		return (PageData)dao.findForObject("ColumnMapper.editicon", pd);
+	}
 
 }

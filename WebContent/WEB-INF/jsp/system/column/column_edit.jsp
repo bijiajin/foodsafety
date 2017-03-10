@@ -57,6 +57,11 @@
 				</tr>
 				<tr>
 					<td>
+						<input type="text" readonly="readonly" name="alias" id="alias" placeholder="这里输入别名（如：jr）" title="别名" value="${pd.alias}"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
 						<select class="input_txt" name="clon_state" id="clon_state" data-placeholder="请选择状态">
 							<option value="1" <c:if test="${pd.clon_state == 1 }">selected</c:if>>启用</option>
 							<option value="2" <c:if test="${pd.clon_state == 2}">selected</c:if>>禁用</option>

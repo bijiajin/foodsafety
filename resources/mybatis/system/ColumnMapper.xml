@@ -14,7 +14,7 @@
 	
 	<!-- 分页查询所有栏目。用于栏目列表 -->
 	<select id="colnmulistPage" parameterType="page" resultType="pd">
-		SELECT id as clon_id,`name` as clon_name,state as clon_state FROM food_column where 1=1
+		SELECT id as clon_id,`name` as clon_name,state as clon_state,alias as alias,icon as icon FROM food_column where 1=1
 		<if test="pd.clon_name != null and pd.clon_name != ''">
 		AND `name` LIKE CONCAT(CONCAT('%', #{pd.clon_name}),'%')
 		</if>
@@ -25,12 +25,12 @@
 	
 	<!-- 添加栏目 -->
 	<insert id="addColumn" parameterType="pd">
-		INSERT INTO `food_column`(name,state) VALUES (#{clon_name}, #{clon_state});
+		INSERT INTO `food_column`(name,state,alias) VALUES (#{clon_name}, #{clon_state},#{alias});
 	</insert>
 	
 	<!-- 根据ID查找栏目。用于修改 -->
 	<select id="findByID" parameterType="pd" resultType="pd">
-		SELECT id as clon_id,`name` as clon_name,state as clon_state FROM food_column where id = #{clon_id}
+		SELECT id as clon_id,`name` as clon_name,state as clon_state,alias as alias FROM food_column where id = #{clon_id}
 	</select>
 	
 	<!-- 根据id修改栏目 -->
@@ -57,4 +57,9 @@
 	<select id="listAllColumn" resultMap="columnResultMap">
 		SELECT id as clon_id,`name` as clon_name,state as clon_state,alias as alias,icon as icon FROM food_column where state = 1
 	</select>
+	
+	<!-- 修改栏目图标 -->
+	<update id="editicon" parameterType="pd" >
+		UPDATE food_column SET icon = #{Colimn_ICON} WHERE id=#{ColumnID}
+	</update>
 </mapper>

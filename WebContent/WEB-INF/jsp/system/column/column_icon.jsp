@@ -31,7 +31,7 @@
 				$(top.hangge());
 				//保存
 				function save(){
-					if($("#MENU_ICON").val()==""){
+					if($("#Colimn_ICON").val()==""){
 						alert('请选择图标');
 						return false;
 					}
@@ -91,8 +91,6 @@
 					<td><label onclick="seticon('icon-recommandchannel');"><input name="form-field-radio" type="radio" value="icon-edit"><span class="lbl">&nbsp;<i class="y-icon icon-recommandchannel"></i></span></label></td>
 					<td><label onclick="seticon('icon-funnychannel');"><input name="form-field-radio" type="radio" value="icon-edit"><span class="lbl">&nbsp;<i class="y-icon icon-funnychannel"></i></span></label></td>
 				</tr>
-				
-				
 				
 				<tr>
 				<td style="text-align: center;" colspan="100">

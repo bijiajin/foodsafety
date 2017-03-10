@@ -158,7 +158,7 @@ public class ColumnController extends BaseController{
 		PageData pd = new PageData();
 		try{
 			pd = this.getPageData();
-//			pd = menuService.editicon(pd);
+			pd = columnService.editicon(pd);
 			mv.addObject("msg","success");
 		} catch(Exception e){
 			logger.error(e.toString(), e);
