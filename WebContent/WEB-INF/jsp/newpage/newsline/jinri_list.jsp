@@ -55,13 +55,14 @@
             <div class="middlebar">
                 <div class="y-box middlebar-inner" >
                     <div class="y-left logo-box">
-                        <a class="logo-link" href="new_def.do" ga_event="go_home">
-                            <img class="logo" id="home-logo" src="<%=basePath%>static/images/foodlogo.png">
+                        <a class="logo-link" href="App/new_def.do" ga_event="go_home">
+<%--                             <img class="logo" id="home-logo" src="<%=basePath%>static/images/foodlogo.png"> --%>
+                            <img class="logo" id="home-logo" src="<%=basePath%>static/login/logo_food.png">
                         </a>
                     </div>
                     <div riot-tag="searchbox">
                         <div name="searchBox" class="y-left search-box">
-                            <form action="new_def.do" method="post" data-node="searchForm" >
+                            <form action="App/new_def.do" method="post" data-node="searchForm" >
                                 <div class="y-box input-group">
                                     <input class="y-left input-text" id="keywords" name="keywords" autocomplete="off" ga_event="mh_search" type="text" placeholder="请输入关键字" value="${pd.keyboard }">
                                     <div class="y-right btn-submit">
