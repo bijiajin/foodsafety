@@ -196,6 +196,9 @@ public class AppController extends BaseController{
 			case "gy":
 				gotoHtml = "about";
 				break;
+			case "js":
+				gotoHtml = "js_list";
+				break;
 			default:
 				break;
 			}

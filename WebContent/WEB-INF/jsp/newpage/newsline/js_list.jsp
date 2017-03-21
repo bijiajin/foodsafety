@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="<%=basePath%>static/css/news/home.css">
 <script type="text/javascript" src="<%=basePath%>static/js/news/jquery.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>static/js/news/ajax.js"></script>
-<title>东莞信息</title>
+<title>信息检索</title>
 
 </head>
 <body style="min-width: 1220px; overflow-x: hidden;">
@@ -56,7 +56,8 @@
                 <div class="y-box middlebar-inner" >
                     <div class="y-left logo-box">
                         <a class="logo-link" href="App/new_def.do" ga_event="go_home">
-                        	<img class="logo" id="home-logo" src="<%=basePath%>static/login/logo_food.png">
+<%--                             <img class="logo" id="home-logo" src="<%=basePath%>static/images/foodlogo.png"> --%>
+                            <img class="logo" id="home-logo" src="<%=basePath%>static/login/logo_food.png">
                         </a>
                     </div>
                     <div riot-tag="searchbox">

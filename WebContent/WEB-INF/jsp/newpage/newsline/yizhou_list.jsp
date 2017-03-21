@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="<%=basePath%>static/css/news/home.css">
 <script type="text/javascript" src="<%=basePath%>static/js/news/jquery.min.js"></script>
 <script type="text/javascript" src="<%=basePath%>static/js/news/ajax.js"></script>
-<title>今日关注</title>
+<title>一周要闻</title>
 
 </head>
 <body style="min-width: 1220px; overflow-x: hidden;">
