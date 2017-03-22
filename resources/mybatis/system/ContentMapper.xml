@@ -105,6 +105,9 @@
 		<if test="pd.yz != null and pd.yz !=''">
 		 AND DATE_SUB(CURDATE(), INTERVAL 7 DAY) &lt;= date(pubtime)
 		</if>
+		<!-- 信息检索 
+		<if test="pd.js != null and pd.js !=''"></if>
+		-->
 		GROUP BY pubtime DESC
 	</select>
 	

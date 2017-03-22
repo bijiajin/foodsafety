@@ -166,37 +166,48 @@ public class AppController extends BaseController{
 		ModelAndView mv = this.getModelAndView();
 		PageData pd = new PageData();
 		pd = this.getPageData();
+		pd.put("jr", "jr");
 		String keyboard = pd.getString("keywords");
 		String newsType = pd.getString("n");
 		String cloumName = pd.getString("cloumName");
+		
+			
 		if(StringUtils.isEmpty(newsType))
 			newsType = cloumName;
+			
+		
 		if(!StringUtils.isEmpty(newsType)){
 			switch (newsType) {
 			case "jr":
-				pd.put("jr", "jr");
+				
 				pd.put("n", "jr");
 				gotoHtml = "jinri_list";
 				break;
 			case "yz":
 				pd.put("yz", "yz");
 				pd.put("n", "yz");
+				pd.remove("jr");
 				gotoHtml = "yizhou_list";
 				break;
 			case "dg":
 				pd.put("is_dongguan", "is_dongguan");
 				pd.put("n", "dg");
+				pd.remove("jr");
 				gotoHtml = "dongguan_list";
 				break;
 			case "gd":
 				pd.put("is_guangdong", "is_guangdong");
 				pd.put("n", "gd");
+				pd.remove("jr");
 				gotoHtml = "guangdong_list";
 				break;
 			case "gy":
 				gotoHtml = "about";
 				break;
 			case "js":
+				pd.put("js", "js");
+				pd.put("n", "js");
+				pd.remove("jr");
 				gotoHtml = "js_list";
 				break;
 			default:
@@ -204,13 +215,15 @@ public class AppController extends BaseController{
 			}
 		}
 		
-		if(!StringUtils.isEmpty(keyboard))
+		if(!StringUtils.isEmpty(keyboard)){
 			pd.put("keyboard", keyboard);
+			pd.remove("jr");
+		}
+			
 		
 		mv.setViewName("newpage/newsline/"+gotoHtml);
 		page.setPd(pd);
 		
-		//
 		try {
 			pd.put("SYSNAME", Tools.readTxtFile(Const.SYSNAME)); //读取系统名称
 			//shiro管理的session
