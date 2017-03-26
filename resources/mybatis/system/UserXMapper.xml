@@ -212,8 +212,10 @@
 				r.ROLE_NAME
 		from SYS_USER u, SYS_ROLE r 
 		where u.ROLE_ID = r.ROLE_ID 
+		<!-- 
 		and u.USERNAME != 'admin'
 		and (r.ROLE_ID != '7' and r.PARENT_ID != '7')
+		 -->
 		<if test="pd.USERNAME != null and pd.USERNAME != ''"><!-- 关键词检索 -->
 			and
 				(

@@ -470,8 +470,10 @@ public class RoleController extends BaseController {
 				}else{
 					
 					List<PageData> userlist = roleService.listAllUByRid(pd);
-					List<PageData> appuserlist = roleService.listAllAppUByRid(pd);
-					if(userlist.size() > 0 || appuserlist.size() > 0){
+					//查看是否有该角色下的app用户，如果不适用app用户表的话，注释下一行代码
+//					List<PageData> appuserlist = roleService.listAllAppUByRid(pd);
+//					if(userlist.size() > 0 || appuserlist.size() > 0){
+					if(userlist.size() > 0 ){
 						errInfo = "false2";
 					}else{
 					roleService.deleteRoleById(ROLE_ID);
