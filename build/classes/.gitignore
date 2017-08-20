@@ -1,0 +1,10 @@
+/com/
+/dbconfig.properties
+/ehcache.xml
+/food_pagetable.sql
+/foodsafety.sql
+/foodsafety170120.sql
+/log4j.properties
+/log4j.xml
+/mybatis/
+/spring/

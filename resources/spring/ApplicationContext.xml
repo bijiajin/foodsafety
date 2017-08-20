@@ -35,6 +35,12 @@
         </property>  
 	</bean> 
 	
+	<bean id="springUtils" class="com.zedata.foodsafety.support.spring.SpringUtils" />
+
+
+	<bean id="schedulerFactoryBean"
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean" />
+	
 	<!-- 阿里 druid数据库连接池 -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">  
          <!-- 数据库基本信息配置 -->

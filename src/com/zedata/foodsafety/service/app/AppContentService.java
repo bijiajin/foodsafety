@@ -1,6 +1,9 @@
 package com.zedata.foodsafety.service.app;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -8,7 +11,10 @@ import org.springframework.stereotype.Service;
 
 import com.zedata.foodsafety.dao.DaoSupport;
 import com.zedata.foodsafety.entity.Page;
+import com.zedata.foodsafety.entity.system.msg.MsgMail;
+import com.zedata.foodsafety.support.RetObj;
 import com.zedata.foodsafety.util.PageData;
+import com.zedata.foodsafety.util.SendMainUtils;
 
 /**
  * @类名:AppContentService.java 
@@ -38,6 +44,35 @@ public class AppContentService {
 	
 	public PageData findByID(PageData pd) throws Exception{
 		return (PageData)dao.findForObject("ContentMapper.findByID", pd);
+	}
+	
+	/**
+	 * 
+	 * @param msg
+	 * @return
+	 * @throws Exception 
+	 */
+	public RetObj doJobTask(MsgMail msg) throws Exception{
+		RetObj retObj = new RetObj();
+		boolean flag = false;
+		PageData pd = new PageData();
+		pd.put("lastupdateTime", msg.getLastUpdateTime());
+		String[] keyword = msg.getKeyWord().split(",");
+		List<Map<String,Object>> keyList = new ArrayList<Map<String,Object>>();
+		for(String key : keyword){
+			Map<String,Object> keyMap = new HashMap<String,Object>();
+			keyMap.put("key", key);
+			keyList.add(keyMap);
+		}
+		pd.put("keyList", keyList);
+		Map<String,Object> rest = (Map<String, Object>) dao.findForObject("ContentMapper.warning", pd);
+		
+		if(Integer.parseInt(rest.get("count").toString()) >0){
+			flag = SendMainUtils.sendMain(msg);
+		}
+		retObj.setFlag(flag);
+		retObj.setObj(rest);
+		return retObj;
 	}
 	
 	

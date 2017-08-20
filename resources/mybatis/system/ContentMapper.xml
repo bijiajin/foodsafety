@@ -19,6 +19,11 @@
 		<result column="state" property="state"/>
 	</resultMap>
 	-->
+	<resultMap type="Content" id="ContentResultMap">
+		<result column="count" property="count"/>
+		<result column="maxTime" property="maxTime"/>
+	</resultMap>
+	
 	<!-- 分页查询所有新闻。用于展示新闻 -->
 	<select id="contentlistPage" parameterType="Page" resultType="pd">
 		SELECT infoid,title,content,summary,source,link,author,inerttime,pubtime FROM food_pagetable WHERE state = 1
@@ -109,6 +114,21 @@
 		<if test="pd.js != null and pd.js !=''"></if>
 		-->
 		GROUP BY pubtime DESC
+	</select>
+	
+	<select id="warning" parameterType="pd" resultMap="ContentResultMap">
+	SELECT 
+		count(*) as count,
+		MAX(inerttime) AS maxTime 
+	FROM food_pagetable 
+	WHERE 
+	<if test="pd.keyList.size() !=0">
+		<foreach collection="pd.keyList" index="index" item="item">
+	 title LIKE CONCAT(CONCAT('%', #{item.key}),'%') OR content LIKE CONCAT(CONCAT('%', #{item.key}),'%')
+	 </foreach>
+	</if>
+	  
+	AND inerttime &gt; #{lastupdateTime}
 	</select>
 	
 	
