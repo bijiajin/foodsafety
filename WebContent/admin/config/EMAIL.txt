@@ -1,1 +1,1 @@
-smtp.qq.com,fh,25,fh,itfather@1b23.com,fh,123
+smtp.cstnet.cn,fh,25,fh,foodsafety-test@casc.ac.cn,fh,idc888888
