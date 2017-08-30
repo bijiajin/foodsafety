@@ -67,7 +67,7 @@ public class AppContentService {
 		pd.put("keyList", keyList);
 		Map<String,Object> rest = (Map<String, Object>) dao.findForObject("ContentMapper.warning", pd);
 		
-		if(Integer.parseInt(rest.get("count").toString()) >0){
+		if(Integer.parseInt(rest.get("count").toString()) >msg.getThreshold()){
 			flag = SendMainUtils.sendMain(msg);
 		}
 		retObj.setFlag(flag);

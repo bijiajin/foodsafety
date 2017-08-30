@@ -28,7 +28,7 @@
 	<div class="row-fluid">
 	
 			<!-- 检索  -->
-			<form action="Column/coluList.do" method="post" name="columnForm" id="columnForm">
+			<form action="task/taskList.do" method="post" name="taskForm" id="taskForm">
 			<table>
 				<tr>
 					<td>
@@ -83,7 +83,7 @@
 								<td>${job.jobId }</td>
 						<td>${job.jobName }</td>
 						<td>${job.jobGroup }</td>
-						<td>${job.jobStatus }<c:choose>
+						<td><c:choose>
 								<c:when test="${job.jobStatus=='1' }">
 									<a href="javascript:;"
 										onclick="changeJobStatus('${job.jobId}','stop')">停止</a>&nbsp;
@@ -183,7 +183,7 @@
 		//检索
 		function search(){
 			top.jzts();
-			$("#columnForm").submit();
+			$("#taskForm").submit();
 		}
 		
 		
@@ -231,7 +231,7 @@
 			 top.jzts();
 			 var diag = new top.Dialog();
 			 diag.Drag=true;
-			 diag.Title ="资料";
+			 diag.Title ="定时任务";
 			 diag.URL = '<%=basePath%>task/goEdit.do?taskId='+id;
 			 diag.Width = 600;
 			 diag.Height = 350;
@@ -244,83 +244,9 @@
 			 diag.show();
 		}
 		
-		//删除
-		function delColn(clon_id,msg){
-			bootbox.confirm("确定要删除["+msg+"]吗?", function(result) {
-				if(result) {
-					top.jzts();
-					var url = "<%=basePath%>Column/deleteColn.do?clon_id="+clon_id;
-					$.get(url,function(data){
-						nextPage(${page.currentPage});
-					});
-				}
-			});
-		}
 		
-		//批量操作
-		function makeAll(msg){
-			bootbox.confirm(msg, function(result) {
-				if(result) {
-					var str = '';
-					var emstr = '';
-					var phones = '';
-					for(var i=0;i < document.getElementsByName('ids').length;i++)
-					{
-						  if(document.getElementsByName('ids')[i].checked){
-						  	if(str=='') str += document.getElementsByName('ids')[i].value;
-						  	else str += ',' + document.getElementsByName('ids')[i].value;
-						  	
-						  	if(emstr=='') emstr += document.getElementsByName('ids')[i].id;
-						  	else emstr += ';' + document.getElementsByName('ids')[i].id;
-						  	
-						  	if(phones=='') phones += document.getElementsByName('ids')[i].alt;
-						  	else phones += ';' + document.getElementsByName('ids')[i].alt;
-						  }
-					}
-					if(str==''){
-						bootbox.dialog("您没有选择任何内容!", 
-							[
-							  {
-								"label" : "关闭",
-								"class" : "btn-small btn-success",
-								"callback": function() {
-									//Example.show("great success");
-									}
-								}
-							 ]
-						);
-						
-						$("#zcheckbox").tips({
-							side:3,
-				            msg:'点这里全选',
-				            bg:'#AE81FF',
-				            time:8
-				        });
-						
-						return;
-					}else{
-						if(msg == '确定要删除选中的数据吗?'){
-							top.jzts();
-							$.ajax({
-								type: "POST",
-								url: '<%=basePath%>Column/deleteAll.do',
-						    	data: {clon_id:str},
-								dataType:'json',
-								//beforeSend: validateData,
-								cache: false,
-								success: function(data){
-									 $.each(data.list, function(i, list){
-											nextPage(${page.currentPage});
-									 });
-								}
-							});
-						}
-						
-						
-					}
-				}
-			});
-		}
+		
+		
 		
 		</script>
 		
@@ -348,24 +274,7 @@
 			
 		});
 		
-		//编辑栏目图标
-		function editTb(ColumnID){
-			 top.jzts();
-		   	 var diag = new top.Dialog();
-			 diag.Drag=true;
-			 diag.Title ="编辑图标";
-			 diag.URL = '<%=basePath%>Column/toEditicon.do?ColumnID='+ColumnID;
-			 diag.Width = 630;
-			 diag.Height = 200;
-			 diag.CancelEvent = function(){ //关闭事件
-				if(diag.innerFrame.contentWindow.document.getElementById('zhongxin').style.display == 'none'){
-					top.jzts(); 
-					setTimeout("location.reload()",100);
-				}
-				diag.close();
-			 };
-			 diag.show();
-		}
+		
 		
 		
 		

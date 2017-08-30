@@ -143,6 +143,9 @@ public class AppController extends BaseController{
 			case "广东信息":
 				pd.put("is_guangdong", "is_guangdong");
 				break;
+			case "tj":
+				pd.put("is_report", "is_report");
+				break;
 			default:
 				break;
 			}
@@ -209,6 +212,12 @@ public class AppController extends BaseController{
 				pd.put("n", "js");
 				pd.remove("jr");
 				gotoHtml = "js_list";
+				break;
+			case "tj":
+				pd.put("tj", "tj");
+				pd.put("n", "tj");
+				pd.remove("jr");
+				gotoHtml = "tj_list";
 				break;
 			default:
 				break;
@@ -324,6 +333,10 @@ public class AppController extends BaseController{
 			case "gd":
 				pd.put("is_guangdong", "is_guangdong");
 				pd.put("n", "gd");
+				break;
+			case "tj":
+				pd.put("is_report", "is_report");
+				pd.put("n", "tj");
 				break;
 			default:
 				break;

@@ -26,6 +26,7 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.stereotype.Service;
 
 import com.zedata.foodsafety.dao.DaoSupport;
+import com.zedata.foodsafety.entity.Page;
 import com.zedata.foodsafety.entity.system.job.ScheduleJob;
 import com.zedata.foodsafety.task.QuartzJobFactory;
 import com.zedata.foodsafety.task.QuartzJobFactoryDisallowConcurrentExecution;
@@ -54,8 +55,8 @@ public class JobTaskService {
 	 * @return
 	 * @throws Exception 
 	 */
-	public List<ScheduleJob> getAllTask() throws Exception {
-		return (List<ScheduleJob>)dao.findForList("ScheduleJobMapper.findAll", null);
+	public List<ScheduleJob> getTasklistPage(Page page) throws Exception {
+		return (List<ScheduleJob>)dao.findForList("ScheduleJobMapper.getTasklistPage", page);
 	}
 
 	/**
@@ -168,7 +169,7 @@ public class JobTaskService {
 		Scheduler scheduler = schedulerFactoryBean.getScheduler();
 
 		// 这里获取任务信息数据
-		List<ScheduleJob> jobList = (List<ScheduleJob>)dao.findForList("ScheduleJobMapper.findAll", null);
+		List<ScheduleJob> jobList = (List<ScheduleJob>)dao.findForList("ScheduleJobMapper.getTasklistPage", new Page());
 	
 		for (ScheduleJob job : jobList) {
 			addJob(job);

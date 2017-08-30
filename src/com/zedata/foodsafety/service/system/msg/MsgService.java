@@ -30,7 +30,7 @@ public class MsgService {
 	
 	@SuppressWarnings("unchecked")
 	public List<PageData> listPdPageMsg(Page pd) throws Exception{
-		return (List<PageData>)dao.findForList("MsgMapper.findAll", pd);
+		return (List<PageData>)dao.findForList("MsgMapper.listPage", pd);
 	}
 	
 	public void addmsg(PageData pd) throws Exception{

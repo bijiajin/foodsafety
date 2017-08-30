@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zedata.foodsafety.controller.base.BaseController;
+import com.zedata.foodsafety.entity.Page;
 import com.zedata.foodsafety.entity.system.job.ScheduleJob;
 import com.zedata.foodsafety.service.system.job.JobTaskService;
 import com.zedata.foodsafety.support.RetObj;
@@ -33,21 +34,28 @@ public class JobTaskController extends BaseController{
 	private JobTaskService taskService;
 
 	@RequestMapping("taskList")
-	public String taskList(HttpServletRequest request) throws Exception {
-		List<ScheduleJob> taskList = taskService.getAllTask();
-		request.setAttribute("taskList", taskList);
-		return "system/task/task_list";
+	public ModelAndView taskList(Page page) throws Exception {
+		ModelAndView mv = this.getModelAndView();
+		PageData pd = new PageData();
+		pd = this.getPageData();
+		page.setPd(pd);
+		List<ScheduleJob> restList = taskService.getTasklistPage(page);
+		mv.addObject("taskList", restList);
+		 mv.addObject("pd", pd);
+		 mv.setViewName("system/task/task_list");
+		
+		return mv;
 	}
 	
 	@RequestMapping("goAdd")
-	public ModelAndView goAdd(HttpServletRequest request) throws Exception {
+	public ModelAndView goAdd() throws Exception {
 		ModelAndView mv = this.getModelAndView();
 		mv.setViewName("system/task/task_add");
 		return mv;
 	}
 	
 	@RequestMapping("goEdit")
-	public ModelAndView goEdit(HttpServletRequest request) throws Exception {
+	public ModelAndView goEdit() throws Exception {
 		ModelAndView mv = this.getModelAndView();
 		mv.setViewName("system/task/task_edit");
 		PageData pd = new PageData();
@@ -59,7 +67,7 @@ public class JobTaskController extends BaseController{
 
 	@RequestMapping("add")
 	@ResponseBody
-	public ModelAndView addTesk(HttpServletRequest request, ScheduleJob scheduleJob) {
+	public ModelAndView addTesk(ScheduleJob scheduleJob) {
 		ModelAndView mv = this.getModelAndView();
 		RetObj retObj = new RetObj();
 		retObj.setFlag(false);
@@ -116,7 +124,7 @@ public class JobTaskController extends BaseController{
 
 	@RequestMapping("changeJobStatus")
 	@ResponseBody
-	public RetObj changeJobStatus(HttpServletRequest request, Long jobId, String cmd) {
+	public RetObj changeJobStatus(Long jobId, String cmd) {
 		RetObj retObj = new RetObj();
 		retObj.setFlag(false);
 		try {

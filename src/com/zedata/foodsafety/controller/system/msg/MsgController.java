@@ -1,23 +1,15 @@
 package com.zedata.foodsafety.controller.system.msg;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zedata.foodsafety.controller.base.BaseController;
 import com.zedata.foodsafety.entity.Page;
-import com.zedata.foodsafety.service.system.column.ColumnService;
 import com.zedata.foodsafety.service.system.msg.MsgService;
-import com.zedata.foodsafety.util.AppUtil;
-import com.zedata.foodsafety.util.Jurisdiction;
 import com.zedata.foodsafety.util.PageData;
 
 /**

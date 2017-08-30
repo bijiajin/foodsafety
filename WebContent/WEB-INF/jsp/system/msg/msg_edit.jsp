@@ -23,27 +23,7 @@
 		<!--提示框-->
 		<script type="text/javascript" src="static/js/jquery.tips.js"></script>
 		
-<script type="text/javascript">
-	top.hangge();
-	//保存
-	function save(){
-		if($("#columnName").val()==""){
-			$("#columnName").tips({
-				side:3,
-	            msg:'请输入栏目名称',
-	            bg:'#AE81FF',
-	            time:2
-	        });
-			$("#columnName").focus();
-			return false;
-		}
-			$("#form1").submit();
-			$("#zhongxin").hide();
-			$("#zhongxin2").show();
-	}
-	
-	
-</script>
+
 	</head>
 <body>
 		<form action="msg/editMsg.do" name="form1" id="form1"  method="post">
@@ -65,7 +45,7 @@
 				<tr>
 					<td>
 						<span>触发报警关键字</span>
-						<input type="text"  name="keyWord" id="keyWord" placeholder="触发报警关键字" title="关键字" value="${pd.keyWord}"/>
+						<input type="text"  name="keyWord" id="keyWord" placeholder="触发报警关键字" title="关键字" value="${pd.key_word}"/>
 					</td>
 				</tr>
 				<tr>
@@ -91,5 +71,18 @@
 		<script src="static/js/bootstrap.min.js"></script>
 		<script src="static/js/ace-elements.min.js"></script>
 		<script src="static/js/ace.min.js"></script>
+		
+		<script type="text/javascript">
+	top.hangge();
+	//保存
+	function save(){
+		
+			$("#form1").submit();
+			$("#zhongxin").hide();
+			$("#zhongxin2").show();
+	}
+	
+	
+</script>
 </body>
 </html>

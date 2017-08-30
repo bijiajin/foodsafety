@@ -27,21 +27,11 @@
 	top.hangge();
 	//保存
 	function save(){
-		if($("#columnName").val()==""){
-			$("#columnName").tips({
-				side:3,
-	            msg:'请输入栏目名称',
-	            bg:'#AE81FF',
-	            time:2
-	        });
-			$("#columnName").focus();
-			return false;
-		}
+		
 			$("#form1").submit();
 			$("#zhongxin").hide();
 			$("#zhongxin2").show();
 	}
-	
 	
 </script>
 	</head>

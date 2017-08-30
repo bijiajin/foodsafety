@@ -14,7 +14,7 @@
 	</resultMap>
 	
 	<!-- 分页查询所有栏目。用于栏目列表 -->
-	<select id="findAll" parameterType="page" resultType="pd">
+	<select id="listPage" parameterType="page" resultType="pd">
 		SELECT * FROM sys_mail 
 		
 	</select>

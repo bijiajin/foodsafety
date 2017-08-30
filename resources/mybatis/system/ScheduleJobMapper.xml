@@ -24,7 +24,7 @@
 	</sql>
 	
 	<!-- 查询所有 -->
-	<select id="findAll" resultMap="BaseResultMap">
+	<select id="getTasklistPage" resultMap="BaseResultMap">
 		select 
 			<include refid="Base_Column_List"></include>
 		from schedule_job	
