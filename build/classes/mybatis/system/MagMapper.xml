@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MsgMapper">
+	
+	<resultMap type="Column" id="columnResultMap">
+		<id column="id" property="id"/>
+		<result column="send_to_mail" property="sendToMail"/>
+		<result column="subject" property="subject"/>
+		<result column="key_word" property="keyWord"/>
+		<result column="threshold" property="threshold"/>
+		<result column="last_update_time" property="lastUpdateTime"/>
+		<result column="content" property="content"/>
+	</resultMap>
+	
+	<!-- 分页查询所有栏目。用于栏目列表 -->
+	<select id="listPage" parameterType="page" resultType="pd">
+		SELECT * FROM sys_mail 
+		
+	</select>
+	
+	<!-- 添加栏目 -->
+	<insert id="addMsg" parameterType="pd">
+		INSERT INTO `sys_mail`(send_to_mail,subject,key_word,threshold) VALUES (#{sendToMail}, #{subject},#{keyWord},#{threshold});
+	</insert>
+	
+	<!-- 根据ID查找栏目。用于修改 -->
+	<select id="findByID" parameterType="pd" resultType="pd">
+		SELECT * FROM sys_mail where id = #{id}
+	</select>
+	
+	<!-- 根据id修改栏目 -->
+	<update id="editMsg" parameterType="MsgMail">
+		UPDATE sys_mail SET `send_to_mail`=#{sendToMail},subject=#{subject},key_word = #{keyWord},threshold = #{threshold} WHERE id=#{id}
+	</update>
+	
+	<update id="updateLastTime" parameterType="pd">
+	UPDATE sys_mail SET last_update_time = #{lastUpdateTime} where id=#{id}
+	</update>
+	
+</mapper>

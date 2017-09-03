@@ -87,16 +87,7 @@
                 <div riot-tag="channel">
                     <div ga_event="left-channel-click" id="left-channel-click" class="channel ">
                         <ul>
-<!--                             <li class="channel-item active"><a href="new_def.do?n=jr" > <i -->
-<!--                                     class="y-icon icon-recommandchannel"></i><span>今日关注</span> </a></li> -->
-<!--                             <li class="channel-item "><a href="new_def.do?n=yz" > <i -->
-<!--                                     class="y-icon icon-hotchannel"></i><span>一周要闻</span> </a></li> -->
-<!--                             <li class="channel-item "><a href="new_def.do?n=dg" > <i -->
-<!--                                     class="y-icon icon-videochannel"></i><span>东莞信息</span> </a></li> -->
-<!--                             <li class="channel-item "><a href="new_def.do?n=gd" > -->
-<!--                                 <i class="y-icon icon-imagechannel"></i><span>广东信息</span> </a></li> -->
-<!--                             <li class="channel-item "><a href="new_def.do?n=js" > <i -->
-<!--                                     class="y-icon icon-militarychannel"></i><span>检索信息</span> </a></li> -->
+                             
 								<c:forEach items="${columnList}" var="column" varStatus="cl">
 									<c:if test="${column.checked}">
 									 <li class="channel-item active"><a href="App/new_def.do?n=${column.alias }" > <i
@@ -124,13 +115,7 @@
                                 	<c:forEach items="${contentList}" var="content" varStatus="vs">
                                     <li class="item"><span id="ad_extra" style="display:none;"></span>
                                         <div class="y-box item-inner">
-                                        	<!-- 
-                                            <div class="y-left lbox" ga_event="article_img_click">
-                                                <a class="img-wrap" target="_blank" href="${content.link }"> 
-                                                   <img alt="" src="<%=basePath%>static/images/point.png">
-                                                </a>
-                                            </div>
-                                             -->
+                                        	
                                             <div class="rbox ">
                                                 <div class="rbox-inner">
                                                     <div class="title-box" ga_event="article_title_click">
@@ -144,12 +129,7 @@
                                                     </div>
                                                     <div class="y-box footer">
                                                         <div class="y-left">
-                                                            <!--<div class="y-left">-->
-                                                                <!--<a class="lbtn tag-hot" ga_event="article_avatar_click"-->
-                                                                   <!--href="http://toutiao.92kaifa.com/news_game/">游戏</a>-->
-                                                                <!--<a class="lbtn source" ga_event="article_name_click">-->
-                                                                    <!--&nbsp;&nbsp;游戏时光VGTIME&nbsp;</a>-->
-                                                            <!--</div>-->
+                                                            
                                                             <span class="lbtn">&nbsp;${content.source}</span>
                                                             <span>&nbsp;<fmt:formatDate value="${content.pubtime}" type="date"/></span>
                                                         </div>

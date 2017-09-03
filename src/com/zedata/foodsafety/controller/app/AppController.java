@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -27,6 +28,7 @@ import com.zedata.foodsafety.util.Const;
 import com.zedata.foodsafety.util.PageData;
 import com.zedata.foodsafety.util.RightsHelper;
 import com.zedata.foodsafety.util.Tools;
+import com.zedata.foodsafety.util.WordUtil;
 
 /**
  * @类名:AppController.java 
@@ -143,7 +145,7 @@ public class AppController extends BaseController{
 			case "广东信息":
 				pd.put("is_guangdong", "is_guangdong");
 				break;
-			case "tj":
+			case "统计报告":
 				pd.put("is_report", "is_report");
 				break;
 			default:
@@ -216,6 +218,10 @@ public class AppController extends BaseController{
 			case "tj":
 				pd.put("tj", "tj");
 				pd.put("n", "tj");
+				if(pd.containsKey("inerttime")){
+					pd.put("startTime", pd.get("inerttime").toString().trim()+" 00:00:00");
+					pd.put("endTime", pd.get("inerttime").toString().trim()+" 23:59:59");
+				}
 				pd.remove("jr");
 				gotoHtml = "tj_list";
 				break;
@@ -378,6 +384,21 @@ public class AppController extends BaseController{
 		}
 		
 		return sb.toString();
+	}
+	
+	@RequestMapping(value="createReport", produces = {"application/json;charset=UTF-8"})
+	@ResponseBody
+	public PageData createReport(Page page,HttpServletRequest request) throws Exception{
+		PageData pd = new PageData();
+		pd = this.getPageData();
+		pd.put("tj", "tj");
+		page.setPd(pd);
+		String path = request.getSession().getServletContext().getInitParameter("upload.path");
+		System.out.println(path);
+		List<PageData> contentList = appContentService.listPdPageContents(page);
+		String filePath = WordUtil.createReport(contentList, path);
+		pd.put("filePath", filePath);
+		return pd;
 	}
 
 }

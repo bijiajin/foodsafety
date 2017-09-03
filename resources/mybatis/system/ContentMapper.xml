@@ -110,9 +110,20 @@
 		<if test="pd.yz != null and pd.yz !=''">
 		 AND DATE_SUB(CURDATE(), INTERVAL 7 DAY) &lt;= date(pubtime)
 		</if>
-		<!-- 信息检索 
-		<if test="pd.js != null and pd.js !=''"></if>
-		-->
+		
+		<if test="pd.tj != null and pd.tj !=''">
+			<if test="pd.province != null and pd.province != ''">
+				AND (
+				keywords LIKE CONCAT(CONCAT('%', #{pd.province}),'%')
+			 	or title LIKE CONCAT(CONCAT('%', #{pd.province}),'%')
+			 	or content LIKE CONCAT(CONCAT('%', #{pd.province}),'%')
+			 )
+			</if>
+			<if test="pd.inerttime != null and pd.inerttime != '' ">
+			and inerttime &gt;= #{pd.startTime} AND #{pd.endTime} &gt;= inerttime
+			</if>
+		</if>
+		
 		GROUP BY pubtime DESC
 	</select>
 	

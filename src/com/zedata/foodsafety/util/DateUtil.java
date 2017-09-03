@@ -17,6 +17,9 @@ public class DateUtil {
 
 	private final static SimpleDateFormat sdfTime = new SimpleDateFormat(
 			"yyyy-MM-dd HH:mm:ss");
+	
+	private final static SimpleDateFormat sdfAllTime = new SimpleDateFormat(
+			"yyyyMMddHHmmss");
 
 	/**
 	 * 获取YYYY格式
@@ -45,6 +48,15 @@ public class DateUtil {
 		return sdfDays.format(new Date());
 	}
 
+	/**
+	 * 获取YYYYMMDDHHmmss格式
+	 * 
+	 * @return
+	 */
+	public static String getAllTime() {
+		return sdfAllTime.format(new Date());
+	}
+	
 	/**
 	 * 获取YYYY-MM-DD HH:mm:ss格式
 	 * 
@@ -174,8 +186,8 @@ public class DateUtil {
     }
     
     public static void main(String[] args) {
-    	System.out.println(getDays());
-    	System.out.println(getAfterDayWeek("3"));
+    	System.out.println(getAllTime());
+    	
     }
 
 }
