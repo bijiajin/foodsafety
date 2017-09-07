@@ -169,6 +169,7 @@ public class JobTaskService {
 		Scheduler scheduler = schedulerFactoryBean.getScheduler();
 
 		// 这里获取任务信息数据
+		@SuppressWarnings("unchecked")
 		List<ScheduleJob> jobList = (List<ScheduleJob>)dao.findForList("ScheduleJobMapper.getTasklistPage", new Page());
 	
 		for (ScheduleJob job : jobList) {

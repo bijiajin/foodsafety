@@ -367,20 +367,36 @@ public class AppController extends BaseController{
 	private String createNewList(List<PageData> pagelist,PageData pg){
 		StringBuffer sb = new StringBuffer();
 		for(PageData pagedata : pagelist){
-			sb.append("<li class=\"item\"><span id=\"ad_extra\" style=\"display:none;\"></span>")
-			.append("<div class=\"y-box item-inner\">")
-			.append("<div class=\"y-left lbox\" ga_event=\"article_img_click\">")
-			.append("<div class=\"y-left lbox\" ga_event=\"article_img_click\">")
-			.append("<a class=\"img-wrap\" target=\"_blank\" href=\"").append(pagedata.get("link")).append("\">")
-			.append("<img alt=\"\" src=\"").append(pg.get("url")).append("static/images/jr.jpg\">")
-			.append("</a> </div> ")
-			.append("<div class=\"rbox \">").append("<div class=\"rbox-inner\">").append("<div class=\"title-box\" ga_event=\"article_title_click\">")
-			.append("<a class=\"link title\" target=\"_blank\" href=\" ").append(pagedata.get("link")).append("\">").append(pagedata.get("title")).append("</a>")
-			.append("</div> <div class=\"y-box summary\">").append(pagedata.get("summary")).append("</div>")
-			.append("<div class=\"y-box footer\">").append("<div class=\"y-left\">").append("<span class=\"lbtn\">&nbsp;").append(pagedata.get("source"))
-			.append("</span> <span>&nbsp;<fmt:formatDate value=\"").append(pagedata.get("pubtime")).append("\" type=\"date\"/></span>")
-			.append("</div> <div class=\"y-right\"> </div> </div> </div> </div> </div> </li>" )
-			;
+//			sb.append("<li class=\"item\"><span id=\"ad_extra\" style=\"display:none;\"></span>")
+//			.append("<div class=\"y-box item-inner\">")
+//			.append("<div class=\"y-left lbox\" ga_event=\"article_img_click\">")
+//			.append("<div class=\"y-left lbox\" ga_event=\"article_img_click\">")
+//			.append("<a class=\"img-wrap\" target=\"_blank\" href=\"").append(pagedata.get("link")).append("\">")
+//			.append("<img alt=\"\" src=\"").append(pg.get("url")).append("static/images/jr.jpg\">")
+//			.append("</a> </div> ")
+//			.append("<div class=\"rbox \">").append("<div class=\"rbox-inner\">").append("<div class=\"title-box\" ga_event=\"article_title_click\">")
+//			.append("<a class=\"link title\" target=\"_blank\" href=\" ").append(pagedata.get("link")).append("\">").append(pagedata.get("title")).append("</a>")
+//			.append("</div> <div class=\"y-box summary\">").append(pagedata.get("summary")).append("</div>")
+//			.append("<div class=\"y-box footer\">").append("<div class=\"y-left\">").append("<span class=\"lbtn\">&nbsp;").append(pagedata.get("source"))
+//			.append("</span> <span>&nbsp;<fmt:formatDate value=\"").append(pagedata.get("pubtime")).append("\" type=\"date\"/></span>")
+//			.append("</div> <div class=\"y-right\"> </div> </div> </div> </div> </div> </li>" )
+//			;
+			
+			sb.append("<li class=\"item\"><span id=\"ad_extra\" style=\"display:none;\"></span>");
+			sb.append("<div class=\"y-box item-inner\">");
+			sb.append("<div class=\"rbox \">");
+			sb.append("<div class=\"rbox-inner\">");
+			sb.append("<div class=\"title-box\" ga_event=\"article_title_click\">");
+			sb.append("<img alt=\"\" src=\"").append("static/images/point.png\">");
+			sb.append("<a class=\"link title\" target=\"_blank\" ").append(" href=\"").append(pagedata.get("link")).append("\">").append(pagedata.get("title")).append("</a>");
+			sb.append("</div>");
+			sb.append("<div class=\"y-box summary\">").append(pagedata.get("summary")).append("</div>");
+			sb.append("<div class=\"y-box footer\">").append("<div class=\"y-left\">");
+			sb.append("<span class=\"lbtn\">&nbsp;").append(pagedata.get("source")).append("</span>");
+			sb.append("<span>&nbsp;<fmt:formatDate value=\"").append(pagedata.get("pubtime")).append(" type=\"date\"/></span>");
+			sb.append("</div> <div class=\"y-right\">").append("</div>").append("</div>").append("</div>");
+			sb.append("</div> </div> </li>");
+			
 		}
 		
 		return sb.toString();

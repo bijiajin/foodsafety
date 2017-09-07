@@ -18,6 +18,7 @@
 	<mvc:resources mapping="/static/**" location="/,/static/" />
 	<mvc:resources mapping="/plugins/**" location="/,/plugins/" />
 	<mvc:resources mapping="/uploadFiles/**" location="/,/uploadFiles/" /> 
+	<mvc:resources mapping="/report/**" location="/,/report/" />
 
 	<!-- 访问拦截  -->  
   	<mvc:interceptors>

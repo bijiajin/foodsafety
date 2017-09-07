@@ -87,7 +87,7 @@
 						<input type="text" readonly="readonly" name="springId" id="springId" placeholder="这里输入spring ID" title="spring id" value="${ScheduleJob.springId} "/>
 					</td>
 					<td>方法名</td>
-					<td><input type="text" readonly="readonly" name="methodName" id="methodName" placeholder="这里输入需要执行的方法名" title="方法名" value="${ScheduleJob.springId} "/></td>
+					<td><input type="text" readonly="readonly" name="methodName" id="methodName" placeholder="这里输入需要执行的方法名" title="方法名" value="${ScheduleJob.methodName} "/></td>
 				</tr>
 				<tr>
 					<td>描述</td>

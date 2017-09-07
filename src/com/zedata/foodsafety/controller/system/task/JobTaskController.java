@@ -69,12 +69,12 @@ public class JobTaskController extends BaseController{
 	@ResponseBody
 	public ModelAndView addTesk(ScheduleJob scheduleJob) {
 		ModelAndView mv = this.getModelAndView();
-		RetObj retObj = new RetObj();
-		retObj.setFlag(false);
+//		RetObj retObj = new RetObj();
+//		retObj.setFlag(false);
 		try {
 			CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule(scheduleJob.getCronExpression());
 		} catch (Exception e) {
-			retObj.setMsg("cron表达式有误，不能被解析！");
+//			retObj.setMsg("cron表达式有误，不能被解析！");
 			mv.setViewName("save_error");
 			mv.addObject("msg", "cron表达式有误，不能被解析！");
 			return mv;
@@ -118,7 +118,7 @@ public class JobTaskController extends BaseController{
 			return mv;
 		}
 
-		mv.setViewName("save_success");
+		mv.setViewName("save_result");
 		return mv;
 	}
 
